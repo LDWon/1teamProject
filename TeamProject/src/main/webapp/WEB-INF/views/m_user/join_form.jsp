@@ -6,6 +6,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	#id_ok{
+		color: #008000;
+		display: none;
+	}
+	#id_already{
+		color: #F55939;
+		display: none;	
+	}
+</style>
 <script src="${pageContext.request.contextPath }/resources/js/httpRequest.js"></script>
 <script type="text/javascript">
 	function join(f) {
@@ -21,7 +31,7 @@
 		if (id=="") {
 			alert("아이디를 입력해주세요.");
 			f.id.focus();
-		}else if (f.idDuplication.value!="idCheck") {
+		}else if (f.idDuplication.value=="idUncheck") {
 			alert("아이디 중복체크를 해주세요.");
 		}else if (pwd=="") {
 			alert("비밀번호를 입력해주세요.");
@@ -46,7 +56,7 @@
 		//비밀번호 일치 확인
 		if(pwd!=pwdChk){
 			alert("비밀번호가 일치하지 않습니다.");
-		}else if(pwd==pwdChk) {
+		}else if(pwd==pwdChk&&f.idDuplication.value=="idCheck") {
 			alert("회원가입이 완료되었습니다.");
 			f.action="join.do";
 			f.submit();
@@ -70,17 +80,22 @@
 			var data = xhr.responseText;
 			var json = eval(data);
 			
-			if(json[0].param == 'no'){
+			if(json[0].param == 'yes'){
 				alert('사용할 수 있는 아이디 입니다.');
+				document.joinForm.idDuplication.value="idCheck";
+				document.getElementById('id_ok').style.display='block';
+				document.getElementById('id_already').style.display='none';
 			} else{
-				alert('이미 있는 아이디입니다.');
+				alert('이미 존재하는 아이디 입니다.');
+				document.getElementById('id_already').style.display='block';
+				document.getElementById('id_ok').style.display='none';
 			}
 		}
 	}
 </script>
 </head>
 <body>
-	<form method="post" action="">
+	<form name="joinForm" method="post" action="">
 		<!-- 메인상표 -->
 		<h1>FIND</h1>
 		<!-- 아이디 입력 -->
@@ -93,15 +108,17 @@
 			</button>
 			<!-- 아이디 중복확인 체크여부 -->
 			<input type="hidden" name="idDuplication" value="idUncheck">
+			<span id="id_ok">사용 가능한 아이디입니다.</span>
+			<span id="id_already">이미 존재하는 아이디 입니다.</span>
 		</div>
 		<!-- 비밀번호 입력 -->
 		<div>
 			<p>비밀번호</p>
-			<input name="pwd" type="text" placeholder="비밀번호를 입력해주세요">
+			<input name="pwd" type="password" placeholder="비밀번호를 입력해주세요">
 		</div>
 		<div>
 			<p>비밀번호 재확인</p>
-			<input name="pwdChk" type="text" placeholder="비밀번호를 다시 입력해주세요">
+			<input name="pwdChk" type="password" placeholder="비밀번호를 다시 입력해주세요">
 		</div>
 		<!-- 이름 입력 -->
 		<div>

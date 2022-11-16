@@ -6,7 +6,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="user_insert" parameterType="m_user">
 		insert into m_user values(
-								0,
 								#{id},
 								#{pwd},
 								#{birth},

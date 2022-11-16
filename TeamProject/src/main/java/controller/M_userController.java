@@ -46,9 +46,9 @@ public class M_userController {
 		System.out.println("id를 가져옴 : " + id);
 		int res = m_user_dao.selectAllId(id);
 		if (res == 1) {
-			return "[{'param':'yes'}]";
-		} else {
 			return "[{'param':'no'}]";
+		} else {
+			return "[{'param':'yes'}]";
 		}
 	}
 }
