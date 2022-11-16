@@ -1,43 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-	/* .id_ok{
-		color: #008000;
-		display: none;
-	}
-	.id_already{
-		color: #6A82FB;
-		display: none;	
-	} */
-</style>
+<script src="${pageContext.request.contextPath }/resources/js/httpRequest.js"></script>
 <script type="text/javascript">
-	/* function checkId() {
-		var id = $('#id').val();//id값이 "id"인 입력란의 값을 저장
-		$.afax({
-			url:'./idCheck',//Controller에서 요청받을 주소
-			type:'post',
-			data:{id:id},
-			success:function(cnt){//컨트롤러에서 넘어온 cnt
-				if (cnt==0) {//0일때 사용가능 아이디
-					$('.id_ok').css("display","inline-block");
-					$('.id_already').css("display", "none");
-				}else { // cnt가 1일 경우 -> 이미 존재하는 아이디
-                    $('.id_already').css("display","inline-block");
-                    $('.id_ok').css("display", "none");
-                    alert("아이디를 다시 입력해주세요");
-                    $('#id').val('');
-                }
-			},
-            error:function(){
-                alert("에러입니다");
-            }
-		});
-	} */
 	function join(f) {
 		var id = f.id.value;
 		var pwd = f.pwd.value;
@@ -50,27 +20,61 @@
 		//유효성검사
 		if (id=="") {
 			alert("아이디를 입력해주세요.");
+			f.id.focus();
+		}else if (f.idDuplication.value!="idCheck") {
+			alert("아이디 중복체크를 해주세요.");
 		}else if (pwd=="") {
 			alert("비밀번호를 입력해주세요.");
+			f.pwd.focus();
 		}else if (pwdChk=="") {
 			alert("다시 한번 비밀번호를 입력해주세요.");
+			f.pwdChk.focus();
 		}else if (name=="") {
 			alert("이름을 입력해주세요.");
+			f.name.focus();
 		}else if (birth=="") {
 			alert("생년월일을 입력해주세요.");
+			f.birth.focus();
 		}else if (email=="") {
 			alert("이메일을 입력해주세요.");
+			f.email.focus();
 		}else if (tel=="") {
 			alert("전화번호를 입력해주세요.");
+			f.tel.focus();
 		}
 		
 		//비밀번호 일치 확인
 		if(pwd!=pwdChk){
 			alert("비밀번호가 일치하지 않습니다.");
-		}else {
+		}else if(pwd==pwdChk) {
 			alert("회원가입이 완료되었습니다.");
 			f.action="join.do";
 			f.submit();
+		}
+	}
+	//아이디 중복확인
+	function fn_dbCheckId(f) {
+		var id = f.id.value;
+		var url = "dbCheckId.do";
+		var param = "id="+id;
+		if (id.length==0||id=="") {
+			alert("아이디를 입력해주세요.");
+			f.id.focus();
+		}else{
+			sendRequest(url,param,dbChkId,"post");
+		}
+	}
+	//아이디 중복확인 콜백메서드
+	function dbChkId() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			var data = xhr.responseText;
+			var json = eval(data);
+			
+			if(json[0].param == 'no'){
+				alert('사용할 수 있는 아이디 입니다.');
+			} else{
+				alert('이미 있는 아이디입니다.');
+			}
 		}
 	}
 </script>
@@ -81,12 +85,14 @@
 		<h1>FIND</h1>
 		<!-- 아이디 입력 -->
 		<div>
-			<label>아이디</label>
-			<input name="id" id="id" type="text" placeholder="아이디를 입력해주세요" oninput="checkId()">
-			<!-- id ajax 중복체크 -->
-			<!-- <span class="id_ok">사용 가능한 아이디입니다.</span>
-			<span class="id_already">사용할 수 없는 아이디입니다.</span>
-			<input type="button" value="중복확인"> -->
+			<p>아이디</p>
+			<input name="id" id="id" type="text" placeholder="아이디를 입력해주세요">
+			<!-- 아이디 중복확인 -->
+			<button type="button" onclick="fn_dbCheckId(this.form)" name="dbCheckId" class="checkId">
+				중복확인
+			</button>
+			<!-- 아이디 중복확인 체크여부 -->
+			<input type="hidden" name="idDuplication" value="idUncheck">
 		</div>
 		<!-- 비밀번호 입력 -->
 		<div>

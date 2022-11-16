@@ -15,6 +15,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 								)
 	</insert>
 	
+	<select id="selectAllId" resultType="int" parameterType="String">
+		select count(*) from m_user where id= #{id}
+	</select>
 </mapper>
 
 
