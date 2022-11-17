@@ -12,7 +12,7 @@ hvasicqeliecofsj
 
 <git token password>
 
-	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
+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
 
 <색상 조율>
 
