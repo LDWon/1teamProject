@@ -17,6 +17,7 @@
 </style>
 <script src="${pageContext.request.contextPath }/resources/js/httpRequest.js"></script>
 <script type="text/javascript">
+	//회원 등록
 	function join(f) {
 		var id = f.id.value;
 		var pwd = f.pwd.value;
@@ -91,6 +92,14 @@
 			}
 		}
 	}
+	//이메일 인증
+	function emailAuth(f) {
+		var id = f.id.value;
+		var email =f.email.value;
+		var url="emailAuth.do";
+		var param="id="+id+"&email"+email;
+	}
+	
 </script>
 </head>
 <body>
@@ -133,6 +142,8 @@
 		<div>
 			<p>이메일</p>
 			<input name="email" type="text">
+			<!-- 이메일 인증 -->
+			<input type="button" value="인증하기" onclick="emailAuth(this.form)">
 		</div>
 		<!-- 휴대전화 입력 -->
 		<div>

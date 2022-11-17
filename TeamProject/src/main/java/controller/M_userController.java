@@ -13,12 +13,7 @@ import vo.M_userVO;
 
 @Controller
 public class M_userController {
-	/*
-	 * https://jee2memory.tistory.com/entry/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%94%84%EB
-	 * %A0%88%EC%9E%84%EC%9B%8C%ED%81%AC-%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85-%EC%8B
-	 * %9C-%EC%9D%B4%EB%A9%94%EC%9D%BC-%EC%9D%B8%EC%A6%9D-%EA%B5%AC%ED%98%84%ED%95%
-	 * 98%EA%B8%B0
-	 */	
+	//https://jee2memory.tistory.com/entry/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC-%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85-%EC%8B%9C-%EC%9D%B4%EB%A9%94%EC%9D%BC-%EC%9D%B8%EC%A6%9D-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0
 	
 	@Autowired
 	M_userDAO m_user_dao;
@@ -57,4 +52,6 @@ public class M_userController {
 			return "[{'param':'yes'}]";
 		}
 	}
+	
+	
 }

@@ -1,0 +1,78 @@
+--일렬번호 
+
+create sequence seq_board_idx;
+
+--게시판 테이블 
+
+create table board(
+	idx number(3) primary key,
+	name varchar2(100) not null,
+	subject varchar2(255) not null,
+	content CLOB,
+	pwd varchar2(100),
+	ip varchar2(100),
+	regidate date,
+	readhit number(3) default 0,
+	ref number, --기준글번호(댓글을 달기위한 메인글)
+	step number, --댓글순서(수직적으로)
+	depth number --댓글의 깊이(댓글의 댓글의 개념)
+);
+
+--샘플데이터 추가 
+--새글쓰기 
+insert into board values(
+	seq_board_idx.nextVal,
+	'일길동',
+	'내가1등',
+	'내용 내용입니다',
+	'1111',
+	'192.0.0.1',
+	sysdate,
+	0,
+	seq_board_idx.currVal,
+	0,
+	0
+	);
+
+--댓글쓰기 
+insert into board values(
+	seq_board_idx.nextVal,
+	'이길동',
+	'난2등',
+	'ㅋㅋㅋㅋㅋ',
+	'1111',
+	'192.0.0.2',
+	sysdate,
+	0,
+	1,--메인글의idx
+	1,--step
+	1--depth
+);
+
+--댓글의댓글 
+insert into board values(
+	seq_board_idx.nextVal,
+	'삼길동',
+	'난3등',
+	'오예난3등',
+	'1111',
+	'192.0.0.3',
+	sysdate,
+	0,
+	1,
+	2,
+	2
+);	
+commit;
+--계층형 게시판은 기본적으로 다음과 같은 정렬구조를 가진다.
+ref : 큰값 (최신글)을 기준 ,step : 작은값 기준으로 정렬 
+select * from board order by ref desc, step asc;
+
+
+--현재 DB에서 삭제여부를 판단하기 위한 컬럼 추가 
+alter table board add(del_info number(2));
+
+--페이징 처리를 위한 쿼리문 작성 법
+SELECT * 
+FROM (SELECT rank()over(ORDER BY REF DESC,step)"NO",b.*FROM board b)
+WHERE "NO" BETWEEN 1 AND 10; 
