@@ -34,6 +34,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="emailAuthFail" parameterType="String" resultType="int">
 		select count(*) from m_user where id=#{id} and mail_auth=1
 	</select>
+	
+	<!-- 로그인 가능여부 확인 -->
+	<!-- 회원정보 확인 -->
+	<select id="infoConfirm" parameterType="m_user" resultType="int">
+		select count(*) from m_user where id=#{id} and pwd=#{pwd}
+	</select>
+	<!-- 이메일 인증여부 -->
+	<select id="infoConfirmEmail" parameterType="m_user" resultType="int">
+		select mail_auth from m_user where id=#{id} and pwd=#{pwd}
+	</select>
+	<!-- id 일치 여부 -->
+	<select id="infoConfirmId" parameterType="m_user" resultType="int">
+		select count(*) from m_user where id=#{id}
+	</select>
+	<!-- pwd 일치여부 -->
+	<select id="infoConfirmPwd" parameterType="m_user" resultType="int">
+		select count(*) from m_user where pwd=#{pwd}
+	</select>
 </mapper>
 
 
