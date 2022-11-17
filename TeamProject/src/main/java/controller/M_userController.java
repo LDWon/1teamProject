@@ -47,6 +47,7 @@ public class M_userController {
 		vo.setMail_key(mail_key);
 		// 회원가입
 		m_user_dao.insert(vo);
+		m_user_dao.updateMailKey(vo);
 		// 회원가입 완료되면 인증을 위한 이메일 발송
 		MailHandler sendMail = new MailHandler(mailSender);
 		sendMail.setSubject("[FIND 인증메일 입니다.]"); // 메일제목
