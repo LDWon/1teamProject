@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	alert("이메일 인증이 완료되었습니다!");
-	location.href="/member_agreement.do";
+	location.href="/missing/member_agreement.do";
 </script>
 </head>
 <body>
