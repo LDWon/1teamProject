@@ -1,6 +1,5 @@
 package controller;
 
-import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +26,7 @@ public class M_userController {
 
 	@Autowired
 	JavaMailSender mailSender;
-	
+
 	// 회원가입시 동의 여부 화면
 	@RequestMapping(value = { "/", "/member_agreement.do" })
 	public String member_agreement() {
@@ -48,16 +47,23 @@ public class M_userController {
 		vo.setMail_key(mail_key);
 		// 회원가입
 		m_user_dao.insert(vo);
-		//회원가입 완료되면 인증을 위한 이메일 발송
-		MailHandler sendMail=new MailHandler(mailSender);
-		sendMail.setSubject("[FIND 인증메일 입니다.]"); //메일제목
-		sendMail.setText(
-				"<h1>FIND 메일인증</h1>"+
-				"<br>FIND에 오신 것을 환영합니다."+
-				"<br>아래 [이메일 인증 확인]을 눌러주세요."+
-				"<br><a href='http://localhost:9090/"
-				);
+		// 회원가입 완료되면 인증을 위한 이메일 발송
+		MailHandler sendMail = new MailHandler(mailSender);
+		sendMail.setSubject("[FIND 인증메일 입니다.]"); // 메일제목
+		sendMail.setText("<h1>FIND 메일인증</h1>" + "<br>FIND에 오신 것을 환영합니다." + "<br>아래 [이메일 인증 확인]을 눌러주세요."
+				+ "<br><a href='http://localhost:9090/missing/registerEmail.do?email=" + vo.getEmail() + "&mail_key="
+				+ mail_key + "' target='_blank'>이메일 인증 확인</a>");
+		sendMail.setFrom("testemailcertification@gmail.com", "FIND");
+		sendMail.setTo(vo.getEmail());
+		sendMail.send();
 		return "redirect:/member_agreement.do";
+	}
+
+	// 이메일 인증 확인을 누를때
+	@RequestMapping("/registerEmail.do")
+	public String emailConfirm(M_userVO vo) throws Exception {
+		m_user_dao.updateMailAuth(vo);
+		return Common.VIEW_PATH_M_USER + "emailAuthSuccess.jsp";
 	}
 
 	// 아이디 중복확인
@@ -72,17 +78,5 @@ public class M_userController {
 			return "[{'param':'yes'}]";
 		}
 	}
-
-	/*
-	 * //이메일 인증 문자 전송
-	 * 
-	 * @RequestMapping("/emailAuth.do")
-	 * 
-	 * @ResponseBody public String emailAuth(String email) { String mail_key = new
-	 * TempKey().getKey(30, false); M_userVO vo=new M_userVO();
-	 * vo.setMail_key(mail_key);
-	 * 
-	 * }
-	 */
 
 }
