@@ -9,7 +9,7 @@ https://coding-craft.tistory.com/2
 
 <git token password>
 
-	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
+	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
 
 
 <색상 조율>
