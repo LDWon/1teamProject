@@ -10,6 +10,6 @@ create table m_user(
 	tel varchar2(100)
 );
 
---이메일 인증용 컬럼 회원테이블 추가
+--회원테이블 추가
 alter table m_user add mail_auth int default 0;
 alter table m_user add mail_key varchar(50);
