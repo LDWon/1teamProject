@@ -1,0 +1,15 @@
+--시퀀스 
+
+create SEQUENCE SEQ_MISSING_IDX;
+
+--테이블 
+create  table missing (
+	idx NUMBER(10) primary key,
+	name VARCHAR2(100) not null,
+	subject varchar2(255) not null,
+	content CLOB NOT NULL,
+	IP VARCHAR2(100) NOT NULL,
+	REGIDATE DATE,
+	PRNUM NUMBER(10)
+);
+

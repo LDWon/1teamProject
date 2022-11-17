@@ -1,0 +1,17 @@
+--시퀀스
+CREATE SEQUENCE SEQ_M_COM_IDX;
+
+--회원테이블
+create table m_com(
+	idx number(3) primary key,
+	name varchar2(100) not null,
+	subject varchar2(255) not null,
+	content CLOB,
+	pwd varchar2(100),
+	ip varchar2(100),
+	regidate date,
+	readhit number(3) default 0,
+	ref number, --기준글번호(댓글을 달기위한 메인글)
+	step number, --댓글순서(수직적으로)
+	depth number --댓글의 깊이(댓글의 댓글의 개념)
+);

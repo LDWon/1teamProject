@@ -17,6 +17,7 @@
 </style>
 <script src="${pageContext.request.contextPath }/resources/js/httpRequest.js"></script>
 <script type="text/javascript">
+	//회원 등록
 	function join(f) {
 		var id = f.id.value;
 		var pwd = f.pwd.value;
@@ -56,7 +57,7 @@
 		if(pwd!=pwdChk){
 			alert("비밀번호가 일치하지 않습니다.");
 		}else if(pwd==pwdChk&&f.idDuplication.value=="idCheck") {
-			alert("회원가입이 완료되었습니다.");
+			alert("회원가입이 완료되었습니다.\n이메일 인증을 진행해주세요!");
 			f.action="join.do";
 			f.submit();
 		}

@@ -1,0 +1,15 @@
+--시퀀스
+create sequence seq_m_user_idx;
+
+--회원테이블
+create table m_user(
+	id varchar2(100) not null,
+	pwd varchar2(100) not null,
+	birth varchar2(100),
+	email varchar2(100),
+	tel varchar2(100)
+);
+
+--회원테이블 추가
+alter table m_user add mail_auth int default 0;
+alter table m_user add mail_key varchar(50);
