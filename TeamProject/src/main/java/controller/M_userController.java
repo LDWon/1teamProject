@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import dao.M_userDAO;
+import mail.TempKey;
 import util.Common;
 import vo.M_userVO;
 
@@ -36,6 +37,7 @@ public class M_userController {
 	// 회원등록
 	@RequestMapping("/join.do")
 	public String join(M_userVO vo) {
+		
 		m_user_dao.insert(vo);
 		return "redirect:/member_agreement.do";
 	}
@@ -53,5 +55,16 @@ public class M_userController {
 		}
 	}
 	
+	/*
+	 * //이메일 인증 문자 전송
+	 * 
+	 * @RequestMapping("/emailAuth.do")
+	 * 
+	 * @ResponseBody public String emailAuth(String email) { String mail_key = new
+	 * TempKey().getKey(30, false); M_userVO vo=new M_userVO();
+	 * vo.setMail_key(mail_key);
+	 * 
+	 * }
+	 */
 	
 }

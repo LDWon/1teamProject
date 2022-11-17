@@ -10,7 +10,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 								#{pwd},
 								#{birth},
 								#{email},
-								#{tel}
+								#{tel},
+								#{MAIL_KEY},
+								#{MAIL_AUTH}
 								)
 	</insert>
 	

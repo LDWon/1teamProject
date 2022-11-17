@@ -57,7 +57,7 @@
 		if(pwd!=pwdChk){
 			alert("비밀번호가 일치하지 않습니다.");
 		}else if(pwd==pwdChk&&f.idDuplication.value=="idCheck") {
-			alert("회원가입이 완료되었습니다.");
+			alert("회원가입이 완료되었습니다.\n이메일 인증을 진행해주세요!");
 			f.action="join.do";
 			f.submit();
 		}
@@ -92,14 +92,6 @@
 			}
 		}
 	}
-	//이메일 인증
-	function emailAuth(f) {
-		var id = f.id.value;
-		var email =f.email.value;
-		var url="emailAuth.do";
-		var param="id="+id+"&email"+email;
-	}
-	
 </script>
 </head>
 <body>
@@ -142,8 +134,6 @@
 		<div>
 			<p>이메일</p>
 			<input name="email" type="text">
-			<!-- 이메일 인증 -->
-			<input type="button" value="인증하기" onclick="emailAuth(this.form)">
 		</div>
 		<!-- 휴대전화 입력 -->
 		<div>
