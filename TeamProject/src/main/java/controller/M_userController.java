@@ -62,7 +62,7 @@ public class M_userController {
 		sendMail.setFrom("testemailcertification@gmail.com", "FIND");
 		sendMail.setTo(vo.getEmail());
 		sendMail.send();
-		return "redirect:/member_agreement.do";
+		return "redirect:/home";
 	}
 
 	// 이메일 인증 확인을 누를때
