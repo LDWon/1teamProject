@@ -26,11 +26,12 @@ public class M_userController {
 	@Autowired
 	JavaMailSender mailSender;
 
-	//임시 메인 화면
-	@RequestMapping(value= {"/","/home"})
-	public String main() {
-		return Common.VIEW_PATH +"main.jsp";
-	}
+	/*
+	 * //임시 메인 화면
+	 * 
+	 * @RequestMapping(value= {"/","/main.do"}) public String main() { return
+	 * Common.VIEW_PATH +"main.jsp"; }
+	 */
 	
 	// 회원가입시 동의 여부 화면
 	@RequestMapping("/member_agreement.do")
@@ -62,7 +63,7 @@ public class M_userController {
 		sendMail.setFrom("testemailcertification@gmail.com", "FIND");
 		sendMail.setTo(vo.getEmail());
 		sendMail.send();
-		return "redirect:/home";
+		return "redirect:/main.do";
 	}
 
 	// 이메일 인증 확인을 누를때

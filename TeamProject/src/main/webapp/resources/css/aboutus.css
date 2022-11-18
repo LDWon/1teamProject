@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+img{
+	position : relative;
+}
+
+
+
+div {
+	color: f00;
+	display:inline;
+	position : relative;
+	top:10px;
+	left : 800px;
+	bottom : 300px;
+	font-size: 12px;                           /*  폰트 사이즈 12px로 설정 */
+  font-weight: bold
+	
+}
