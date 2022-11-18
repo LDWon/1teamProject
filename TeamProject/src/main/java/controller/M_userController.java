@@ -26,12 +26,6 @@ public class M_userController {
 	@Autowired
 	JavaMailSender mailSender;
 
-	//임시 메인 화면
-	@RequestMapping(value= {"/","/home"})
-	public String main() {
-		return Common.VIEW_PATH +"main.jsp";
-	}
-	
 	// 회원가입시 동의 여부 화면
 	@RequestMapping("/member_agreement.do")
 	public String member_agreement() {
@@ -62,7 +56,7 @@ public class M_userController {
 		sendMail.setFrom("testemailcertification@gmail.com", "FIND");
 		sendMail.setTo(vo.getEmail());
 		sendMail.send();
-		return "redirect:/home";
+		return Common.REDIRECT_HOME;
 	}
 
 	// 이메일 인증 확인을 누를때
@@ -85,28 +79,29 @@ public class M_userController {
 		}
 	}
 
-	//로그인 입력창
+	// 로그인 입력창
 	@RequestMapping("/loginForm")
 	public String loginForm() {
-		return Common.VIEW_PATH_M_USER+"login_form.jsp";
+		return Common.VIEW_PATH_M_USER + "login_form.jsp";
 	}
-	//로그인
+
+	// 로그인
 	@RequestMapping("/login")
 	@ResponseBody
-	public String login(String id,String pwd) {
-		M_userVO vo =new M_userVO();
+	public String login(String id, String pwd) {
+		M_userVO vo = new M_userVO();
 		vo.setId(id);
 		vo.setPwd(pwd);
-		int res=m_user_dao.infoConfirm(vo);
-		if (res==10) {//로그인 성공
+		int res = m_user_dao.infoConfirm(vo);
+		if (res == 10) {// 로그인 성공
 			return "[{'param':'Y'}]";
-		}else if (res==20) {//이메일 인증만 안되있을 시
+		} else if (res == 20) {// 이메일 인증만 안되있을 시
 			return "[{'param':'noEmail'}]";
-		}else if (res==15) {//비밀번호 불일치
+		} else if (res == 15) {// 비밀번호 불일치
 			return "[{'param':'noPwd'}]";
-		}else if (res==25) {//아이디 불일치
+		} else if (res == 25) {// 아이디 불일치
 			return "[{'param':'noId'}]";
-		}else if (res==30) {//회원정보 없음
+		} else if (res == 30) {// 회원정보 없음
 			return "[{'param':'noInfo'}]";
 		}
 		return "[{'param':'error'}]";
