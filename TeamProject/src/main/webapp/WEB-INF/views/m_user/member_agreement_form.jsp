@@ -324,7 +324,7 @@ eXpert 서비스 및 eXpert 센터 가입 등록정보 : 신청일로부터 6개
 		<!-- 취소버튼 -->
 		<div>
 			<input type="button" value="취소"
-				onclick="location.href='sldkjlkfjlkje'">
+				onclick="location.href='main.do'">
 		</div>
 		<!-- 확인버튼 -->
 		<div>

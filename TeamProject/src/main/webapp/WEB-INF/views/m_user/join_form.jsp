@@ -56,9 +56,9 @@
 		//비밀번호 일치 확인
 		if(pwd!=pwdChk){
 			alert("비밀번호가 일치하지 않습니다.");
-		}else if(pwd==pwdChk&&f.idDuplication.value=="idCheck") {
+		}else if(pwd == pwdChk && f.idDuplication.value == "idCheck") {
 			alert("회원가입이 완료되었습니다.\n이메일 인증을 진행해주세요!");
-			f.action="join.do";
+			f.action = "join.do";
 			f.submit();
 		}
 	}
@@ -66,12 +66,12 @@
 	function fn_dbCheckId(f) {
 		var id = f.id.value;
 		var url = "dbCheckId.do";
-		var param = "id="+id;
-		if (id.length==0||id=="") {
+		var param = "id=" + id;
+		if (id.length == 0 || id == "") {
 			alert("아이디를 입력해주세요.");
 			f.id.focus();
-		}else{
-			sendRequest(url,param,dbChkId,"post");
+		} else {
+			sendRequest(url, param, dbChkId, "post");
 		}
 	}
 	//아이디 중복확인 콜백메서드
@@ -79,16 +79,16 @@
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			var data = xhr.responseText;
 			var json = eval(data);
-			
-			if(json[0].param == 'yes'){
+
+			if (json[0].param == 'yes') {
 				alert('사용할 수 있는 아이디 입니다.');
-				document.joinForm.idDuplication.value="idCheck";
-				document.getElementById('id_ok').style.display='block';
-				document.getElementById('id_already').style.display='none';
-			} else{
+				document.joinForm.idDuplication.value = "idCheck";
+				document.getElementById('id_ok').style.display = 'block';
+				document.getElementById('id_already').style.display = 'none';
+			} else {
 				alert('이미 존재하는 아이디 입니다.');
-				document.getElementById('id_already').style.display='block';
-				document.getElementById('id_ok').style.display='none';
+				document.getElementById('id_already').style.display = 'block';
+				document.getElementById('id_ok').style.display = 'none';
 			}
 		}
 	}

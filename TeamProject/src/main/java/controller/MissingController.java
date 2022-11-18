@@ -33,6 +33,12 @@ public class MissingController {
 	@Autowired
 	ServletContext application;
 
+	// 메인 페이지
+	@RequestMapping(value = { "/", "/main.do" })
+	public String main() {
+		return Common.VIEW_PATH_MAIN + "main.jsp";
+	}
+
 	// 메인글 페이지 보기 (step이 0임)
 	@RequestMapping("/missing_list.do")
 	public String missing_list(Model model, String page) {
@@ -50,41 +56,35 @@ public class MissingController {
 		int end = start + Common.Missing_Board.BLOCKLIST - 1;
 
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
-		map.put("start",start);
-		map.put("end",end);
-		
+		map.put("start", start);
+		map.put("end", end);
+
 		List<MissingVO> list = missing_dao.selectList(map);
-		
-		//전체 게시물 수 조회
+
+		// 전체 게시물 수 조회
 		int rowTotal = missing_dao.getRowTotal();
-		
-		String pageMenu = Paging.getPaging("missing_list.do", 
-				   nowPage, //현재 페이지 번호 
-				   rowTotal, //전체 게시물 수
-				   Common.Missing_Board.BLOCKLIST, //한 페이지에 표기할 게시물 수
-				   Common.Missing_Board.BLOCKPAGE); //페이지 메뉴 수
-		
-		//조회수를 위해 저장해뒀던 show라는 정보를 세션에서 제거
+
+		String pageMenu = Paging.getPaging("missing_list.do", nowPage, // 현재 페이지 번호
+				rowTotal, // 전체 게시물 수
+				Common.Missing_Board.BLOCKLIST, // 한 페이지에 표기할 게시물 수
+				Common.Missing_Board.BLOCKPAGE); // 페이지 메뉴 수
+
+		// 조회수를 위해 저장해뒀던 show라는 정보를 세션에서 제거
 		request.getSession().removeAttribute("show");
-		
-		
+
 		model.addAttribute("list", list);
 		model.addAttribute("pageMenu", pageMenu);
 
 		return Common.VIEW_PATH_MISSING + "missing_list.jsp?page=" + nowPage;
-		//?를 포함한 문구가 매핑다음에 따라온다.
+		// ?를 포함한 문구가 매핑다음에 따라온다.
 	}
 
-	
-	
 	// 글을 등록하기 위한 페이지로 이동
 	@RequestMapping("/missing_insert_form.do")
 	public String missing_insert_form() {
 		return Common.VIEW_PATH_MISSING + "missing_insert_form.jsp";
 	}
 
-	
-	
 	// 메인글을 등록하기
 	@RequestMapping("/missing_insert.do")
 	public String missing_insert(MissingVO vo) {
@@ -133,21 +133,19 @@ public class MissingController {
 		}
 	}
 
-	
-	
 	// 메인글 상세보기
 	@RequestMapping("/missing_view.do")
 	public String missing_view(Model model, int idx) {
 
 		MissingVO vo = missing_dao.selectOne(idx);
-		
-		//조회수 증가(F5를 연타했을 때 조회수가 급상승 하는걸 방지)
+
+		// 조회수 증가(F5를 연타했을 때 조회수가 급상승 하는걸 방지)
 		HttpSession session = request.getSession();
-		String show = (String)session.getAttribute("show");
-				
+		String show = (String) session.getAttribute("show");
+
 		if (show == null) {
 			int res = missing_dao.update_readhit(idx);
-			//세션에 "show"라는 이름으로 저장
+			// 세션에 "show"라는 이름으로 저장
 			session.setAttribute("show", "0");
 		}
 
@@ -156,8 +154,6 @@ public class MissingController {
 		return Common.VIEW_PATH_MISSING + "missing_view.jsp";
 	}
 
-	
-	
 	// 메인글 삭제하기
 	@RequestMapping("/missing_del.do")
 	@ResponseBody
@@ -172,30 +168,26 @@ public class MissingController {
 		}
 	}
 
-	
-	
-	//메인글 수정하기 페이지로 이동
+	// 메인글 수정하기 페이지로 이동
 	@RequestMapping("/missing_modify_form.do")
 	public String missing_modify_form(Model model, int idx) {
-		
+
 		MissingVO vo = missing_dao.selectOne(idx);
-		
+
 		model.addAttribute("vo", vo);
-		
+
 		return Common.VIEW_PATH_MISSING + "missing_modify_form.jsp";
 	}
-	
-	
-	
-	
-	//메인글을 수정하기
+
+	// 메인글을 수정하기
 	@RequestMapping("/missing_modify.do")
-	public String missing_modify(int idx, String subject, String region, String content, MultipartFile photo, int page) {
-		
+	public String missing_modify(int idx, String subject, String region, String content, MultipartFile photo,
+			int page) {
+
 		MissingVO basevo = missing_dao.selectOne(idx);
-		
+
 		String ip = request.getRemoteAddr();
-		
+
 		String webPath = "/resources/upload/";
 		String savePath = application.getRealPath(webPath);
 		System.out.println(savePath);
@@ -228,21 +220,23 @@ public class MissingController {
 
 		basevo.setFilename(filename);
 
-		
 		basevo.setSubject(subject);
 		basevo.setRegion(region);
 		basevo.setContent(content);
 		basevo.setIp(ip);
-		
-		
+
 		int res = missing_dao.missing_update(basevo);
-		
+
 		if (res > 0) {
 			return "redirect:missing_view.do?idx=" + idx + "&page=" + page;
 		} else {
 			return null;
 		}
 	}
-	
-	
+
+	// About us 화면이동
+	@RequestMapping("/about.do")
+	public String about() {
+		return Common.VIEW_PATH_MAIN + "aboutus.jsp";
+	}
 }

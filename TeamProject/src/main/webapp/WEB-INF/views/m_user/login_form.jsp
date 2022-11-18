@@ -32,7 +32,7 @@
 			
 			if(json[0].param == 'Y'){
 				alert("로그인 되셨습니다!");
-				location.href="home";
+				location.href="main.do";
 			} else if (json[0].param == 'noEmail') {
 				alert("이메일 인증이 완료되지 않았습니다!\n먼저 이메일 인증을 완료해주세요!");
 			}else if (json[0].param == 'noPwd') {
