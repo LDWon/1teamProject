@@ -1,9 +1,0 @@
---회원테이블
-create table m_user(
-	prnum number(10) primary key,
-	id varchar2(100) not null,
-	pwd varchar2(100) not null,
-	birth varchar2(100),
-	email varchar2(100),
-	tel varchar2(100)
-);
