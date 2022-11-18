@@ -9,6 +9,7 @@
 	</settings>
 	
 	
+	
 	<typeAliases>
 		<typeAlias type="vo.M_userVO" alias="m_user"/>
 		<typeAlias type="vo.MissingVO" alias="missing"/>
