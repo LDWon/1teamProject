@@ -13,3 +13,4 @@ create table m_user(
 --회원테이블 추가
 alter table m_user add mail_key varchar(50);
 alter table m_user add mail_auth int default 0;
+
