@@ -10,9 +10,11 @@
 	
 	<typeAliases>
 		<typeAlias type="vo.M_userVO" alias="m_user"/>
+		<typeAlias type="vo.MissingVO" alias="missing"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="config/mybatis/mapper/m_user.xml" />
+		<mapper resource="config/mybatis/mapper/missing.xml" />
 	</mappers>
 </configuration>
