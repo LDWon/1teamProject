@@ -6,6 +6,7 @@ public class Common {
 	public final static String VIEW_PATH_M_USER = "/WEB-INF/views/m_user/";
 	public final static String VIEW_PATH_MISSING = "/WEB-INF/views/missing/";
 	public final static String VIEW_PATH_MAIN = "/WEB-INF/views/main/";
+	public final static String VIEW_PATH_SHOPPING = "/WEB-INF/views/shopping/";
 
 	// 메인 게시글용
 	public static class Missing_Board {
