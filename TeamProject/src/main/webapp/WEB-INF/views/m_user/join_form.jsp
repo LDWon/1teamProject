@@ -187,7 +187,6 @@
 		<div>
 			<p>이메일</p>
 			<input name="email" type="text" placeholder="이메일을 입력해주세요">
-			
 		</div>
 		<!-- 휴대전화 입력 -->
 		<div>
