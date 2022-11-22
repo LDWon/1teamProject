@@ -13,6 +13,7 @@
 		<script>
 			function missing_search(f) {
 				var region = f.region.value;
+				
 				location.href="missing_region_list.do?region=" + region;
 			}
 		</script>
@@ -52,11 +53,13 @@
 				<th width="100">등록일</th>
 				<th width="50">조회수</th>
 			</tr>
+			
 			<c:forEach var="vo" items="${list}">
+			<c:if test="${param.region eq vo.region}">
 				<tr>
 					<td align="center">${vo.idx}</td>
 					<td>
-					<a href="missing_view.do?idx=${vo.idx}&page=${param.page}">
+					<a href="missing_view.do?idx=${vo.idx}">
 						<font color="black">${vo.subject}</font>
 					</a>
 					</td>
@@ -65,12 +68,8 @@
 					<td align="center">${fn:split(vo.regidate,' ')[0]}</td>
 					<td align="center">${vo.readhit}</td>
 				</tr>
+			</c:if>
 			</c:forEach>
-			<tr>
-				<td colspan="6" align="center"> 
-					${pageMenu}
-				</td>
-			</tr>
 			<tr>
 				<td colspan="6" align="right">
 				<input type="button" value="등록하기" style="cursor:pointer" onclick="location.href='missing_insert_form.do?page=${param.page}'">

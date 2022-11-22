@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- step이 0(메인 글)을 전체조회하기 -->
 	<select id="missing_list" resultType="missing" parameterType="java.util.HashMap">
-		select * from (SELECT RANK() OVER(ORDER BY idx DESC) NO, m.* FROM missing m) where step = 0 and NO BETWEEN #{start} AND #{end}
+		select * from (SELECT RANK() OVER(ORDER BY idx DESC) NO, m.* FROM missing m where step = 0) where NO BETWEEN #{start} AND #{end}
 	</select>
 	
 	
@@ -68,6 +68,41 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 							where idx = #{idx}
 									
 	</update>
+	
+	
+	<!-- 댓글추가를 위한 step+1 -->
+	<update id="missing_update_step" parameterType="missing">
+		update missing set step = step + 1 where ref = #{ref} and step > #{step}
+	</update>
+	
+	
+	
+	<!-- 댓글 작성하기 -->
+	<insert id="missing_reply" parameterType="missing">
+		insert into missing values(seq_missing_idx.nextval,
+									'없음',
+									'없음',
+									'없음',
+									#{content},
+									'없음',
+									#{ip},
+									sysdate,
+									0,
+									#{ref},
+									#{step},
+									'없음'
+									)
+	</insert>
+	
+	
+	
+	<!-- 댓글창 보여주기 -->
+	<select id="missing_list_reply" resultType="missing" parameterType="missing">
+		select * from missing where step > 0 order by step desc
+	</select>
+	
+	
+	
 	
 	
 	
