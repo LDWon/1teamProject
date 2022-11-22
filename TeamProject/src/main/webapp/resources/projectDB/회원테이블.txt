@@ -5,6 +5,7 @@ create sequence seq_m_user_idx;
 create table m_user(
 	id varchar2(100) not null,
 	pwd varchar2(100) not null,
+	name varchar2(50) not null,
 	birth varchar2(100),
 	email varchar2(100),
 	tel varchar2(100),
@@ -15,7 +16,7 @@ create table m_user(
   	memberAddr3 VARCHAR2(100) NOT NULL
 );
 
---회원테이블 추가
+--회원테이블 추가(참고용)
 alter table m_user add mail_key varchar(50);
 alter table m_user add mail_auth int default 0;
 
