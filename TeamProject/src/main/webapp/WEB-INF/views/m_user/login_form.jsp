@@ -14,8 +14,10 @@
 		//유효성 검사
 		if (id=="") {
 			alert("아이디를 입력해주세요");
+			f.id.focus();
 		}else if (pwd=="") {
 			alert("비밀번호를 입력해주세요");
+			f.pwd.focus();
 		}
 		
 		//로그인 정보 확인 ajax
@@ -39,7 +41,7 @@
 				alert("비밀번호를 잘못 입력하셨습니다!");
 			}else if (json[0].param == 'noId') {
 				alert("아이디를 잘못 입력하셨습니다!");
-			}else if (json[0].param == 'noInfo') {
+			}else if (json[0].param == 'error') {
 				alert("회원정보가 없습니다!");
 			}
 		}
