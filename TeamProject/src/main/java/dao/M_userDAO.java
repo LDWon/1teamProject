@@ -38,29 +38,25 @@ public class M_userDAO {
 	public int emailAuthFail(String id) {
 		return session.selectOne("u.emailAuthFail", id);
 	}
-	//로그인
-	public int infoConfirm(M_userVO vo) {
-		//회원정보 확인
-		int resInfo=session.selectOne("u.infoConfirm",vo);
-		if (resInfo==1) {//회원정보가 있을때
-			//이메일 인증여부 확인
-			int resInfoEmail=session.selectOne("u.infoConfirmEmail",vo);
-			if (resInfoEmail==1) {//이메일 인증확인
-				return 10;
-			}else {//이메일 인증이 아직 안돼있을 경우
-				return 20;
-			}
-		}else {//회원정보가 없을 때
-			//아이디,비밀번호 일치 확인
-			int resInfoId=session.selectOne("u.infoConfirmId",vo);
-			int resInfoPwd=session.selectOne("u.infoConfirmPwd",vo);
-			if (resInfoId==1) {//비밀번호 불일치
-				return 15;
-			}else if (resInfoPwd>=1) {//아이디 불일치
-				return 25;
-			}else {//둘다 불일치
-				return 30;
-			}
+
+	// 로그인 id정보 확인
+	public String infoConfirmId(M_userVO vo) {
+		String resInfoId_pwd = session.selectOne("u.infoConfirmId", vo);
+		if (resInfoId_pwd != null) {
+			return resInfoId_pwd;
+		} else {
+			return null;
 		}
 	}
+
+	// 이메일 인증여부 확인
+	public String infoConfirmEmail(M_userVO vo) {
+		int resInfoEmail = session.selectOne("u.infoConfirmEmail", vo);
+		if (resInfoEmail == 1) {// 이메일 인증확인
+			return "yes";
+		} else {// 이메일 인증이 아직 안돼있을 경우
+			return "no";
+		}
+	}
+
 }
