@@ -12,7 +12,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 								#{email},
 								#{tel},
 								#{mail_key},
-								0
+								0,
+								#{memberAddr1},
+								#{memberAddr2},
+								#{memberAddr3}
 								)
 	</insert>
 	
