@@ -1,6 +1,7 @@
 package controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -103,6 +104,7 @@ public class M_userController {
 		M_userVO vo = new M_userVO();
 		vo.setId(id);
 		vo.setPwd(pwd);
+		HttpSession session = request.getSession();
 		String rawPw = "";
 		String encodePw = "";
 		// resInfoId_pwd의 값이 null이 아니면 id가 존재
@@ -115,6 +117,10 @@ public class M_userController {
 				// 이메일 인증여부 확인
 				String resInfoEmail = m_user_dao.infoConfirmEmail(vo);
 				if (resInfoEmail == "yes") {// 로그인 성공
+					// 로그인 성공시 회원정보 가져오기
+					M_userVO lvo = m_user_dao.get_member_information(vo);
+					// 회원정보 세션에 저장
+					session.setAttribute("member", lvo);
 					return "[{'param':'Y'}]";
 				} else if (resInfoEmail == "no") {// 이메일 인증만 안되있을 시
 					return "[{'param':'noEmail'}]";
@@ -127,5 +133,14 @@ public class M_userController {
 			return "[{'param':'noId'}]";
 		}
 		return "[{'param':'error'}]";
+	}
+
+	// 로그아웃
+	@RequestMapping("/logout")
+	public String logout() {
+		HttpSession session = request.getSession();
+		// 세션 전부 삭제
+		session.invalidate();
+		return Common.REDIRECT_HOME;
 	}
 }

@@ -59,4 +59,8 @@ public class M_userDAO {
 		}
 	}
 
+	// 로그인 성공시 회원정보 받아오기
+	public M_userVO get_member_information(M_userVO vo) {
+		return session.selectOne("u.get_member_information", vo);
+	}
 }
