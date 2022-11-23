@@ -12,7 +12,7 @@ hvasicqeliecofsj
 
 <git token password>
 
-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
+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
 
 <색상 조율>
 
@@ -21,3 +21,11 @@ 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
 문자 비교
 
 	https://wepplication.github.io/tools/compareDoc/
+	
+쇼핑몰 구현 참조페이지
+	
+	https://kimvampa.tistory.com/110
+	
+주소 API
+
+	http://postcode.map.daum.net/guide

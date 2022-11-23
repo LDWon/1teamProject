@@ -1,9 +1,11 @@
 package controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,6 +28,10 @@ public class M_userController {
 	@Autowired
 	JavaMailSender mailSender;
 
+	// 비밀번호 암호화를 위한
+	@Autowired
+	private BCryptPasswordEncoder pwEncoder;
+
 	// 회원가입시 동의 여부 화면
 	@RequestMapping("/member_agreement.do")
 	public String member_agreement() {
@@ -44,6 +50,12 @@ public class M_userController {
 		// 랜덤 문자열을 생성하여 mail_key에 넣기
 		String mail_key = new TempKey().getKey(30, false);
 		vo.setMail_key(mail_key);
+		// 비밀번호 인코딩(암호화)
+		String rawPw = ""; // 인코딩 전 비밀번호
+		String encodePw = ""; // 인코딩 후 비밀번호
+		rawPw = vo.getPwd(); // 비밀번호 데이터 얻음
+		encodePw = pwEncoder.encode(rawPw); // 비밀번호 인코딩
+		vo.setPwd(encodePw); // 인코딩된 비밀번호 member객체에 다시 저장
 		// 회원가입
 		m_user_dao.insert(vo);
 		m_user_dao.updateMailKey(vo);
@@ -92,18 +104,43 @@ public class M_userController {
 		M_userVO vo = new M_userVO();
 		vo.setId(id);
 		vo.setPwd(pwd);
-		int res = m_user_dao.infoConfirm(vo);
-		if (res == 10) {// 로그인 성공
-			return "[{'param':'Y'}]";
-		} else if (res == 20) {// 이메일 인증만 안되있을 시
-			return "[{'param':'noEmail'}]";
-		} else if (res == 15) {// 비밀번호 불일치
-			return "[{'param':'noPwd'}]";
-		} else if (res == 25) {// 아이디 불일치
+		HttpSession session = request.getSession();
+		String rawPw = "";
+		String encodePw = "";
+		// resInfoId_pwd의 값이 null이 아니면 id가 존재
+		String resInfoId_pwd = m_user_dao.infoConfirmId(vo);
+		// 아이디가 존재할 경우 비밀번호 대조
+		if (resInfoId_pwd != null) {// 아이디가 존재할 경우
+			rawPw = vo.getPwd(); // 사용자가 제출한 비밀번호
+			encodePw = resInfoId_pwd; // 데이터베이스에 저장한 인코딩된 비밀번호
+			if (true == pwEncoder.matches(rawPw, encodePw)) { // 비밀번호 일치여부 판단
+				// 이메일 인증여부 확인
+				String resInfoEmail = m_user_dao.infoConfirmEmail(vo);
+				if (resInfoEmail == "yes") {// 로그인 성공
+					// 로그인 성공시 회원정보 가져오기
+					M_userVO lvo = m_user_dao.get_member_information(vo);
+					// 회원정보 세션에 저장
+					session.setAttribute("member", lvo);
+					return "[{'param':'Y'}]";
+				} else if (resInfoEmail == "no") {// 이메일 인증만 안되있을 시
+					return "[{'param':'noEmail'}]";
+				}
+			} else {
+				// 비밀번호가 일치하지 않는경우
+				return "[{'param':'noPwd'}]";
+			}
+		} else {// 아이디가 존재하지 않을 경우
 			return "[{'param':'noId'}]";
-		} else if (res == 30) {// 회원정보 없음
-			return "[{'param':'noInfo'}]";
 		}
 		return "[{'param':'error'}]";
+	}
+
+	// 로그아웃
+	@RequestMapping("/logout")
+	public String logout() {
+		HttpSession session = request.getSession();
+		// 세션 전부 삭제
+		session.invalidate();
+		return Common.REDIRECT_HOME;
 	}
 }

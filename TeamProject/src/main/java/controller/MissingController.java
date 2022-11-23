@@ -23,7 +23,7 @@ import vo.MissingVO;
 
 @Controller
 public class MissingController {
-
+	
 	@Autowired
 	HttpServletRequest request;
 
