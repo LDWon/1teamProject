@@ -1,12 +1,21 @@
 package vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class NoticeVO {
 	
 	private String name,subject,content,pwd,regidate,filename;
 	private int idx;
+	private MultipartFile photo;
 	
 	
 	
+	public MultipartFile getPhoto() {
+		return photo;
+	}
+	public void setPhoto(MultipartFile photo) {
+		this.photo = photo;
+	}
 	public String getName() {
 		return name;
 	}

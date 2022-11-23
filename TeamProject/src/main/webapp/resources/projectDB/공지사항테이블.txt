@@ -1,0 +1,24 @@
+--공지사항 테이블 
+
+create SEQUENCE SEQ_notice_IDX;
+
+
+create table notice(
+	idx NUMBER(3) primary key,     
+	name VARCHAR2(100) NOT NULL,
+	subject varchar2(100), --글의 제목
+	content CLOB not null,
+	pwd VARCHAR2(100) NOT NULL,
+	regidate DATE,
+	filename varchar2(100)
+	);
+
+--샘플데이터 
+
+insert into notice values(seq_notice_idx.nextVAL,
+					'sos',
+					'공지사항입니다',
+					'1111',
+					'127.0.0.1',
+					sysdate );
+

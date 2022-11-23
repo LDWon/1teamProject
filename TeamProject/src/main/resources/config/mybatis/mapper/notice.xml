@@ -21,6 +21,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from notice where idx = #{idx}
 	</select>
 	
+	<!-- 공지사항 글 추가하기   -->
+	<insert id="notice_insert" parameterType="notice">
+		insert into notice values(seq_notice_idx.nextval,
+									#{name},
+									#{subject},
+									#{content},
+									sysdate,
+									seq_missing_idx.currval,
+									#{filename}
+									)
+	</insert>
+	
 </mapper>
 
 

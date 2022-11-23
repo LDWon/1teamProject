@@ -34,7 +34,11 @@ public class NoticeDAO {
 			NoticeVO vo = sqlSession.selectOne("m.notice_view", idx);
 			return vo;
 		}
-	
+		//공지사항글 추가
+		public int insert(NoticeVO vo) {
+			int res = sqlSession.insert("m.notice_insert", vo);		
+			return res;
+		}
 	
 
 }
