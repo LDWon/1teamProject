@@ -40,12 +40,12 @@
 				</td>
 			</tr>
 	<tr>
-	  <c:if test="${member.id eq '1234' }">
+	  <c:if test="${member.id eq admin }">
 		  <td>
 		  <input type='button' value='등록하기 ' id='btn1' onclick='toggleBtn1()'/>
 		  </td>
 	 </c:if>
-	 <c:if test="${member.id ne 1234 }">
+	 <c:if test="${member.id ne admin }">
 		  <td>
 		  <input style="display:none" type='button'  value='등록하기 'onclick='toggleBtn1()'/>
 		  </td>
