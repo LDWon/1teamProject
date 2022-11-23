@@ -1,0 +1,6 @@
+--상품 테이블
+create table goods(
+    goodsId varchar2(100) primary key,
+    goodsName varchar2(50),
+    goodsPrice number
+);

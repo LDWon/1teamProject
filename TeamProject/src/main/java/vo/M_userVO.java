@@ -2,7 +2,18 @@ package vo;
 
 public class M_userVO {
 	private String id, pwd, name, birth, email, tel, mail_key, memberAddr1, memberAddr2, memberAddr3;
+	// 이메일 인증 여부 확인
 	private int mail_auth;
+	// 관리자 여부 확인
+	private int adminCk;
+
+	public int getAdminCk() {
+		return adminCk;
+	}
+
+	public void setAdminCk(int adminCk) {
+		this.adminCk = adminCk;
+	}
 
 	public String getName() {
 		return name;

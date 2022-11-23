@@ -143,4 +143,12 @@ public class M_userController {
 		session.invalidate();
 		return Common.REDIRECT_HOME;
 	}
+
+	/* 비동기방식 로그아웃 메서드 */
+	@RequestMapping("/logout.do")
+	@ResponseBody
+	public void logoutPOST() throws Exception {
+		HttpSession session = request.getSession();
+		session.invalidate();
+	}
 }
