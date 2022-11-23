@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="resources/css/shopping_main.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/shopping_main.css">
 <!-- jquery 사용 -->
 <script src="https://code.jquery.com/jquery-3.4.1.js"
 	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
@@ -23,7 +23,11 @@
 						<li><a href="/missing/member_agreement.do">회원가입</a></li>
 					</c:if>
 					<c:if test="${member != null }">
-						<li><a id="gnb_logout_button">로그아웃</a></li>
+						<!-- 관리자권한을 갖고 있을 때만 표시 -->
+						<c:if test="${member.adminCk == 1 }">
+							<li><a href="/missing/admin/main">관리자 페이지</a></li>
+						</c:if>
+						<li><a class="logout_button">로그아웃</a></li>
 						<li>마이룸</li>
 						<li>장바구니</li>
 					</c:if>
@@ -51,7 +55,7 @@
 					<c:if test="${ member != null }">
 						<div class="login_success_area">
 							<span>회원이름 : ${member.name}</span> 
-							<a href="/missing/logout">로그아웃</a>
+							<a class="logout_button" href="/missing/logout.do">로그아웃</a>
 						</div>
 					</c:if>
 				</div>
@@ -68,19 +72,20 @@
 	
 	<script>
  
-	    /* gnb_area 로그아웃 버튼 작동 */
-	    $("#gnb_logout_button").click(function(){
+	    /* 로그아웃 버튼 작동 */
+	    /* 비동기식 */
+	    $(".logout_button").click(function(){
 	    	//alert("버튼 작동");
 	        $.ajax({
-	            type:"POST",
-	            url:"/missing/logout",
+	            type:"GET",
+	            url:"/missing/logout.do",
 	            success:function(data){
 	                alert("로그아웃 되셨습니다.");
 	                document.location.reload();     
 	            } 
 	        }); // ajax 
 	    });
-    
+	    
 	</script>
 </body>
 </html>

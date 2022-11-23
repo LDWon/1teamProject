@@ -29,7 +29,8 @@
 
 	<!-- <context:component-scan base-package="com.korea.db" /> -->
 	<!-- 객체자동생성 -->
-	<context:component-scan base-package="dao, controller" />
+	<context:component-scan
+		base-package="dao, controller" />
 
 
 </beans:beans>

@@ -9,11 +9,12 @@ create table m_user(
 	birth varchar2(100),
 	email varchar2(100),
 	tel varchar2(100),
-	mail_key varchar(50),
-	mail_auth int default 0,
+	mail_key varchar(50),	--메일인증관련 개인 확인용
+	mail_auth int default 0,	--메일 인증여부 확인
 	memberAddr1 VARCHAR2(100) NOT NULL,
   	memberAddr2 VARCHAR2(100) NOT NULL,
-  	memberAddr3 VARCHAR2(100) NOT NULL
+  	memberAddr3 VARCHAR2(100) NOT NULL,
+  	adminCk int default 0	--관리자 권한
 );
 
 --회원테이블 추가(참고용)
