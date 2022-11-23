@@ -13,4 +13,5 @@ public class AdminController {
 	public String adminMainGET() {
 		return Common.VIEW_PATH_ADMIN + "main.jsp";
 	}
+	
 }
