@@ -48,8 +48,12 @@ a {
 .logo_area {
 	width: 25%;
 	height: 100%;
-	background-color: red;
 	float: left;
+}
+
+.logo_area img {
+	width: 100%;
+	height: 100%;
 }
 /* 검색 박스 영역 */
 .search_area {
