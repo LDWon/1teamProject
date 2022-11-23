@@ -72,6 +72,30 @@ public class MissingDAO {
 	
 	
 	
+	
+	 //댓글추가를 위한 step+1 
+	public int update_step(MissingVO vo) { 
+		int res = sqlSession.update("m.missing_update_step", vo); 
+	 	return res;
+	 }
+	 
+	 
+	 //댓글 추가 
+	public int reply(MissingVO vo) {
+		int res = sqlSession.insert("m.missing_reply", vo); 
+		return res;
+	}
+	 
+	
+	//댓글 창 보여주기
+	public List<MissingVO> selectList_reply(MissingVO vo) {
+		List<MissingVO> list = null;
+		list = sqlSession.selectList("m.missing_list_reply", vo);
+		return list;
+	}
+	
+	
+	
 	//지역에 맞는 메인글 찾기 
 	public List<MissingVO> selectList_region(String region) {
 		List<MissingVO> list = null;

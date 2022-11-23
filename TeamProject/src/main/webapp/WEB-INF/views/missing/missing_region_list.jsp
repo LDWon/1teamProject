@@ -13,16 +13,15 @@
 			table {border-collapse: collapse;}
 			th {background-color: #6799FF;}
 			td {background-color: #D9E5FF}
-			#pageMenu {background-color: #6799FF;}
 		</style>
 		<script>
-			function missing_search(f) {
-				var region = f.region.value;
-				
-				f.method="get";
-				f.action="missing_region_list.do";
-				f.submit();
-			}
+		function missing_search(f) {
+			var region = f.region.value;
+			
+			f.method="get";
+			f.action="missing_region_list.do";
+			f.submit();
+		}
 		</script>
 	</head>
 	<body>
@@ -52,7 +51,7 @@
 			</select>
 		</p>
 		</form>
-		<table border="1" align="center"  width ="800"; height="400";>
+		<table border="1" align="center" width="800">
 			<tr>
 				<th width="50">번호</th>
 				<th width="300">제목</th>
@@ -61,11 +60,13 @@
 				<th width="100">등록일</th>
 				<th width="50">조회수</th>
 			</tr>
+			
 			<c:forEach var="vo" items="${list}">
+			<c:if test="${param.region eq vo.region}">
 				<tr>
 					<td align="center">${vo.idx}</td>
 					<td>
-					<a href="missing_view.do?idx=${vo.idx}&page=${param.page}">
+					<a href="missing_view.do?idx=${vo.idx}">
 						<font color="black">${vo.subject}</font>
 					</a>
 					</td>
@@ -74,12 +75,8 @@
 					<td align="center">${fn:split(vo.regidate,' ')[0]}</td>
 					<td align="center">${vo.readhit}</td>
 				</tr>
+			</c:if>
 			</c:forEach>
-			<tr>
-				<td colspan="6" align="center" id="pageMenu"> 
-					${pageMenu}
-				</td>
-			</tr>
 			<tr>
 				<td colspan="6" align="right">
 				<input type="button" value="등록하기" style="cursor:pointer" onclick="location.href='missing_insert_form.do?page=${param.page}'">
