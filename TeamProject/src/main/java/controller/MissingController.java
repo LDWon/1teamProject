@@ -150,7 +150,7 @@ public class MissingController {
 		}
 
 		model.addAttribute("vo", vo);
-
+		
 		return Common.VIEW_PATH_MISSING + "missing_view.jsp";
 	}
 
@@ -234,9 +234,77 @@ public class MissingController {
 		}
 	}
 
+	
+	
+
+	
+	 //댓글달기
+	 
+	 @RequestMapping("missing_reply.do") 
+	 public String missing_reply(Model model, int idx, String content, int page) {
+	 
+		//기준글 idx를 사용해서 게시물의 정보 얻기 
+		MissingVO basevo = missing_dao.selectOne(idx);
+		
+		//기준글의 step보다 큰 값은 step = step + 1 처리 
+		int res = missing_dao.update_step(basevo); 
+		String ip = request.getRemoteAddr();
+		
+		//댓글VO로 포장 
+		MissingVO vo = new MissingVO();
+		vo.setContent(content);
+		vo.setIp(ip);
+		//댓글이 들어갈 위치 설정 
+		vo.setRef(basevo.getRef()); 
+		vo.setStep(basevo.getStep() + 1);
+		 
+		res = missing_dao.reply(vo); 
+		 
+		if (res > 0) { 
+			 return "redirect:missing_view.do?idx=" + idx + "&page=" + page; 
+		} 
+		 else { 
+			 return null; 
+			 }
+		 
+		 }
+	 
+	 
+	 //댓글보기 페이지로 이동
+	 @RequestMapping("missing_reply_list.do")
+	 public String missing_reply_list(Model model, int idx, String page, MissingVO vo) {
+		 
+		 List<MissingVO> list = missing_dao.selectList_reply(vo); //댓글을 리스트로 묶기
+		 model.addAttribute("list", list); //바인딩하기
+		 
+		 return Common.VIEW_PATH_MISSING + "missing_reply_list.jsp?idx=" + idx + "&page=" + page; 
+	 }
+		
+	
+	
+	 //지역별로 메인글 보기
+	 @RequestMapping("missing_region_list.do")
+	 public String missing_region_list(Model model, String region) {
+		 
+		 List<MissingVO> list = missing_dao.selectList_region(region);
+		 model.addAttribute("list", list);
+		 
+		 return Common.VIEW_PATH_MISSING + "missing_region_list.jsp?region=" + region;
+	 }
+	
+	
+	
+	
+	
+	
+	
+	
 	// About us 화면이동
 	@RequestMapping("/about.do")
 	public String about() {
 		return Common.VIEW_PATH_MAIN + "aboutus.jsp";
 	}
+	
+	
+	
 }
