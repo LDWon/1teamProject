@@ -7,19 +7,26 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
+		<link rel="stylesheet" type="text/css" href="resources/css/footer.css"">
 		<style>
 			a{text-decoration: none;}
+			table {border-collapse: collapse;}
+			th {background-color: #6799FF;}
+			td {background-color: #D9E5FF}
 		</style>
 		<script>
-			function missing_search(f) {
-				var region = f.region.value;
-				
-				location.href="missing_region_list.do?region=" + region;
-			}
+		function missing_search(f) {
+			var region = f.region.value;
+			
+			f.method="get";
+			f.action="missing_region_list.do";
+			f.submit();
+		}
 		</script>
 	</head>
 	<body>
-		<h1 align="center">게시판</h1>
+	<jsp:include page="top.jsp" flush="false" />
+		<h1 align="center">실종자 게시판</h1>
 		<form>
 		<p align="center">
 			<select name="region" id="region" style="cursor:pointer"> 
@@ -44,7 +51,7 @@
 			</select>
 		</p>
 		</form>
-		<table border="1" align="center">
+		<table border="1" align="center" width="800">
 			<tr>
 				<th width="50">번호</th>
 				<th width="300">제목</th>
@@ -76,5 +83,6 @@
 				</td>
 			</tr>
 		</table>
+		<jsp:include page="footer.jsp" flush="false" />
 	</body>
 </html>

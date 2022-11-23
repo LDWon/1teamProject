@@ -6,6 +6,12 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
+		<link rel="stylesheet" type="text/css" href="resources/css/footer.css"">
+		<style>
+			table {border-collapse: collapse;}
+			th {background-color: #6799FF;}
+			td {background-color: #D9E5FF}
+		</style>
 		<script>
 			function cancel(f) {
 				if (!confirm("수정을 취소하시겠습니까?")) {
@@ -48,15 +54,16 @@
 		</script>
 	</head>
 	<body>
+	<jsp:include page="top.jsp" flush="false" />
 		<h1 align="center">게시글 등록</h1>
 		<form enctype="multipart/form-data">
-			<table border="1" align="center">
+			<table border="1" align="center" width="800" height="400">
 			<input type="hidden" name="id" value="임시아이디">
 			<input type="hidden" name="idx" value="${vo.idx}">
 			<input type="hidden" name="page" value="${param.page}">
 				<tr>
 					<th>제목</th>
-					<td><input name="subject" value="${vo.subject}"></td>
+					<td colspan="3"><input name="subject" value="${vo.subject}"></td>
 				</tr>
 				<tr>
 					<th>작성자</th>
@@ -96,7 +103,7 @@
 				</tr>
 				<tr>
 					<th>파일 첨부</th>
-					<td><input type="file" name="photo" style="cursor:pointer"></td>
+					<td colspan="3"><input type="file" name="photo" style="cursor:pointer"></td>
  				</tr>
 				<tr>
 					<td colspan="4" align="right">
@@ -106,5 +113,6 @@
 				</tr>
 			</table>
 		</form>
+		<jsp:include page="footer.jsp" flush="false" />
 	</body>
 </html>

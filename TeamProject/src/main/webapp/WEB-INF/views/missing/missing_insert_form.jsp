@@ -5,6 +5,12 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
+		<link rel="stylesheet" type="text/css" href="resources/css/footer.css"">
+		<style>
+			table {border-collapse: collapse;}
+			th {background-color: #6799FF;}
+			td {background-color: #D9E5FF}
+		</style>
 		<script>
 			function missing_insert(f) {
 				var subject = f.subject.value.trim();
@@ -36,13 +42,14 @@
 		</script>
 	</head>
 	<body>
+	<jsp:include page="top.jsp" flush="false" />
 		<h1 align="center">게시글 등록</h1>
 		<form enctype="multipart/form-data">
-			<table border="1" align="center">
+			<table border="1" align="center"  width ="800"; height="400";>
 			<input type="hidden" name="id" value="임시아이디">
 				<tr>
 					<th>제목</th>
-					<td><input name="subject"></td>
+					<td colspan="3"><input name="subject"></td>
 				</tr>
 				<tr>
 					<th>작성자</th>
@@ -50,7 +57,7 @@
 					<th>지역</th>
 					<td align="center">
 						<select name="region" style="cursor:pointer">
-							<option value="전체">전체</option>
+							<option value="선택">선택</option>
 							<option value="서울">서울</option>
 							<option value="경기">경기</option>
 							<option value="부산">부산</option>
@@ -73,12 +80,12 @@
 				<tr>
 					<th>내용</th>
 					<td colspan="3">
-						<pre><textarea name="content" rows="15" cols="50" style="resize:none;">※실종자 등록 양식※&#10;상세지역: &#10;성별: &#10;이름: &#10;나이: &#10;키: &#10;몸무게: &#10;&#10;&#10;→이 부분은 지우고 자유롭게 적어주세요←&#10;&#10;&#10;&#10;&#10;※첨부파일은 1개만 등록 가능합니다.※</textarea></pre>
+						<pre><textarea name="content" rows="15" cols="100" style="resize:none;">※실종자 등록 양식※&#10;상세지역: &#10;성별: &#10;이름: &#10;나이: &#10;키: &#10;몸무게: &#10;&#10;&#10;→이 부분은 지우고 자유롭게 적어주세요←&#10;&#10;&#10;&#10;&#10;※첨부파일은 1개만 등록 가능합니다.※</textarea></pre>
 					</td>
 				</tr>
 				<tr>
 					<th>파일 첨부</th>
-					<td><input type="file" name="photo" style="cursor:pointer"></td>
+					<td colspan="3"><input type="file" name="photo" style="cursor:pointer"></td>
  				</tr>
 				<tr>
 					<td colspan="4" align="right">
@@ -88,5 +95,6 @@
 				</tr>
 			</table>
 		</form>
+		<jsp:include page="footer.jsp" flush="false" />
 	</body>
 </html>

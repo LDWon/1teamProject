@@ -7,13 +7,21 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
+		<link rel="stylesheet" type="text/css" href="resources/css/footer.css"">
+		<style>
+			table {border-collapse: collapse;}
+			th {background-color: #6799FF;}
+			td {background-color: #D9E5FF}
+		</style>
+		
 	</head>
 	<body>
-		<table border="1" align="center">
-			<caption><b>'${param.subject}'의 댓글</b></caption>
+	<jsp:include page="top.jsp" flush="false" />
+		<h1 align="center">'${param.subject}'의 댓글</h1>
+		<table border="1" align="center" width="800">
 				<tr>
-					<th width="50">익명(ip)</th>
-					<th width="300">내용</th>
+					<th width="100">익명(ip)</th>
+					<th width="520">내용</th>
 					<th>작성날짜</th>
 				</tr>
 				<c:forEach var="vo" items="${list}">
@@ -32,5 +40,6 @@
 					</td>
 				</tr>
 			</table>
+		<jsp:include page="footer.jsp" flush="false" />
 	</body>
 </html>

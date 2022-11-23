@@ -6,7 +6,13 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
-
+		<link rel="stylesheet" type="text/css" href="resources/css/footer.css"">
+		<style>
+			table {border-collapse: collapse;}
+			th {background-color: #6799FF;}
+			td {background-color: #D9E5FF;}
+			#subject {background-color: #6799FF;}
+		</style>
 		<script src="${pageContext.request.contextPath}/resources/js/httpRequest.js"></script>
 		<script>
 			/* ----------------------------------삭제---------------------------------- */
@@ -74,18 +80,19 @@
 		</script>
 	</head>
 	<body>
+	<jsp:include page="top.jsp" flush="false" />
 		<form> <!-- 수정할 때 idx를 가져오기 위한 form태그 -->
 			<table border="1" align="center" width="800" height="400">
 				<input type="hidden" name="idx" value="${vo.idx}">
 				<input type="hidden" name="page" value="${param.page}">
 				<tr>
-					<td colspan="6" align="center" height="50"><b>${vo.subject}</b></td>
+					<td colspan="6" align="center" height="50" id="subject"><b>${vo.subject}</b></td>
 				</tr>
 				<tr>
 					<th>작성자</th>
 					<td align="center">${vo.name}</td>
 					
-					<th>아이디(확인용)</th>
+					<th>아이디</th>
 					<td align="center">${vo.id}</td>
 					
 					<th>ip</th>
@@ -125,6 +132,6 @@
 				<input type="button" value="등록" onclick="reply(this.form);">
 	       	</div>
 		</form>
-
+	<jsp:include page="footer.jsp" flush="false" />
 	</body>
 </html>
