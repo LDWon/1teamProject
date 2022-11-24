@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>main</title>
-<link rel="stylesheet" type="text/css" href="resources/css/footer.css"">
+<link rel="stylesheet" type="text/css" href="resources/css/footer.css">
 </head>
 <body>
 

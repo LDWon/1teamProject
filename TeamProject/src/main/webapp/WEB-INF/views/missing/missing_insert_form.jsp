@@ -22,10 +22,6 @@
 					alert('제목을 입력해주세요');
 					return;
 				}
-				if (name == '') {
-					alert('이름을 입력해주세요');
-					return;
-				}
 				if (content == '') {
 					alert('내용을 입력해주세요');
 					return;
@@ -53,7 +49,9 @@
 				</tr>
 				<tr>
 					<th>작성자</th>
-					<td><input name="name" value="임시이름"></td>
+					<td>
+						<input name="name" value="${member.name}" readonly="readonly">
+					</td>
 					<th>지역</th>
 					<td align="center">
 						<select name="region" style="cursor:pointer">
@@ -74,6 +72,7 @@
 							<option value="전북">전북</option>
 							<option value="전남">전남</option>
 							<option value="부산">부산</option>
+							<option value="제주">제주</option>
 						</select>
 					</td>
 				</tr>

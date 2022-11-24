@@ -48,6 +48,7 @@
 				<option value="전북">전북</option>
 				<option value="전남">전남</option>
 				<option value="부산">부산</option>
+				<option value="제주">제주</option>
 				<input type="button" value="검색" onclick="missing_search(this.form);">
 			</select>
 		</p>
@@ -82,7 +83,9 @@
 			</tr>
 			<tr>
 				<td colspan="6" align="right">
-				<input type="button" value="등록하기" style="cursor:pointer" onclick="location.href='missing_insert_form.do?page=${param.page}'">
+					<c:if test="${member!=null }">
+						<input type="button" value="등록하기" style="cursor:pointer" onclick="location.href='missing_insert_form.do?page=${param.page}'">
+					</c:if>
 				</td>
 			</tr>
 		</table>
