@@ -26,7 +26,7 @@
 		</script>
 	</head>
 	<body>
-	<jsp:include page="top.jsp" flush="false" />
+	<jsp:include page="../main/top.jsp" flush="false" />
 		<h1 align="center">실종자 게시판</h1>
 		<form>
 		<p align="center">
@@ -86,6 +86,6 @@
 				</td>
 			</tr>
 		</table>
-		<jsp:include page="footer.jsp" flush="false" />
+		<jsp:include page="../main/footer.jsp" flush="false" />
 	</body>
 </html>

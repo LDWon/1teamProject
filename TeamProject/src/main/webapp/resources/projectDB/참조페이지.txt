@@ -24,7 +24,7 @@ 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
 	
 쇼핑몰 구현 참조페이지
 	
-	https://kimvampa.tistory.com/110
+	https://kimvampa.tistory.com/148
 	
 주소 API
 

@@ -36,7 +36,9 @@
 			</div>
 			<div class="top_area">
 				<div class="logo_area">
-					<h1>logo area</h1>
+					<a href="/missing/main.do">
+						<img src="resources/img/logo_find.png">
+					</a>
 				</div>
 				<div class="search_area">
 					<h1>Search area</h1>

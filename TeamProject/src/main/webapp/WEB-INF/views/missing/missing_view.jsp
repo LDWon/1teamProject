@@ -80,7 +80,7 @@
 		</script>
 	</head>
 	<body>
-	<jsp:include page="top.jsp" flush="false" />
+	<jsp:include page="../main/top.jsp" flush="false" />
 		<form> <!-- 수정할 때 idx를 가져오기 위한 form태그 -->
 			<table border="1" align="center" width="800" height="400">
 				<input type="hidden" name="idx" value="${vo.idx}">
@@ -132,6 +132,6 @@
 				<input type="button" value="등록" onclick="reply(this.form);">
 	       	</div>
 		</form>
-	<jsp:include page="footer.jsp" flush="false" />
+	<jsp:include page="../main/footer.jsp" flush="false" />
 	</body>
 </html>
