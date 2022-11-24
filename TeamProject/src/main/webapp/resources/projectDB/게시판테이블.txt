@@ -13,7 +13,8 @@ create table missing(
 	regidate date, --등록일
 	readhit number(3) default 0, --조회수
 	ref number(10), --기준글의 번호
-	step number(3) --댓글의 순서
+	step number(3), --댓글의 순서
+	filename varchar2(100) --파일이름
 );
 
 --샘플데이터
@@ -27,7 +28,8 @@ insert into missing values(seq_missing_idx.nextVal,
 			sysdate,
 			0,
 			seq_missing_idx.currVal,
-			0
+			0,
+			'no_file'
 			);
 			   
 

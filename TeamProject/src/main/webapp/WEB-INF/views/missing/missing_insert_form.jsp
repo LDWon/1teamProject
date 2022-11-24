@@ -42,7 +42,7 @@
 		</script>
 	</head>
 	<body>
-	<jsp:include page="top.jsp" flush="false" />
+	<jsp:include page="../main/top.jsp" flush="false" />
 		<h1 align="center">게시글 등록</h1>
 		<form enctype="multipart/form-data">
 			<table border="1" align="center"  width ="800"; height="400";>
@@ -95,6 +95,6 @@
 				</tr>
 			</table>
 		</form>
-		<jsp:include page="footer.jsp" flush="false" />
+		<jsp:include page="../main/footer.jsp" flush="false" />
 	</body>
 </html>
