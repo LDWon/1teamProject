@@ -113,7 +113,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 지역에 맞는 메인 글 찾기 -->
 	<select id="missing_list_region" resultType="missing" parameterType="vo.MissingRegionVO">
-		select * from (SELECT RANK() OVER(ORDER BY idx DESC) NO, m.* FROM missing m where step = 0) where region = #{region} and NO BETWEEN #{start} AND #{end}
+		select * from (SELECT RANK() OVER(ORDER BY idx DESC) NO, m.* FROM missing m where step = 0 and region = #{region}) where NO BETWEEN #{start} AND #{end}
 		
 	</select>
 	
