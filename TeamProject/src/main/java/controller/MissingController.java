@@ -276,7 +276,7 @@ public class MissingController {
 	}
 
 	// 지역별로 메인글 보기
-	@RequestMapping("missing_region_list.do")
+	@RequestMapping("/missing_region_list.do")
 	public String missing_region_list(Model model, String page, String region) {
 
 		int nowPage = 1;
@@ -301,8 +301,8 @@ public class MissingController {
 			list = missing_dao.selectList(map);
 		} else {
 			// 지역 검색해서 해당 글 불러오기
-			start =map.get("start");
-			end=map.get("end");
+			start = map.get("start");
+			end = map.get("end");
 			MissingRegionVO mrvo = new MissingRegionVO();
 			mrvo.setStart(start);
 			mrvo.setEnd(end);
@@ -313,7 +313,7 @@ public class MissingController {
 		// 지역별 전체 게시물 수 조회
 		int rowTotal = missing_dao.getRowTotal_region(region);
 
-		String pageMenu = Paging.getPaging("missing_region_list.do", nowPage, // 현재 페이지 번호
+		String pageMenu = Paging.getPaging_region("missing_region_list.do?region=" + region, nowPage, // 현재 페이지 번호
 				rowTotal, // 전체 게시물 수
 				Common.Missing_Board.BLOCKLIST, // 한 페이지에 표기할 게시물 수
 				Common.Missing_Board.BLOCKPAGE); // 페이지 메뉴 수
