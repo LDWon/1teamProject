@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import dao.MissingDAO;
 import util.Common;
 import util.Paging;
+import vo.MissingRegionVO;
 import vo.MissingVO;
 
 @Controller
@@ -276,16 +277,56 @@ public class MissingController {
 
 	// 지역별로 메인글 보기
 	@RequestMapping("missing_region_list.do")
-	public String missing_region_list(Model model, String region) {
-		if (region.equals("전체")) { //전체 지역 불러오기
-			return "redirect:missing_list.do";
-		}else {
-			//지역 검색해서 해당 글 불러오기
-			List<MissingVO> list = missing_dao.selectList_region(region);
-			model.addAttribute("list", list);
-			
-			return Common.VIEW_PATH_MISSING + "missing_region_list.jsp?region=" + region;
+	public String missing_region_list(Model model, String page, String region) {
+
+		int nowPage = 1;
+
+		if (page != null && !page.isEmpty()) {
+			nowPage = Integer.parseInt(page);
 		}
+
+		// 한 페이지에 표시가 될 게시물의 시작과 끝 번호 계산
+		// page가 1이면 1~10까지 계산되어야 함
+		// page가 2이면 11~20까지 계산되어야 함
+		int start = (nowPage - 1) * Common.Missing_Board.BLOCKLIST + 1;
+		int end = start + Common.Missing_Board.BLOCKLIST - 1;
+
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("start", start);
+		map.put("end", end);
+
+		List<MissingVO> list = null;
+
+		if (region.equals("전체")) { // 전체 지역 불러오기
+			list = missing_dao.selectList(map);
+		} else {
+			// 지역 검색해서 해당 글 불러오기
+			start =map.get("start");
+			end=map.get("end");
+			MissingRegionVO mrvo = new MissingRegionVO();
+			mrvo.setStart(start);
+			mrvo.setEnd(end);
+			mrvo.setRegion(region);
+			list = missing_dao.selectList_region(mrvo);
+		}
+
+		// 지역별 전체 게시물 수 조회
+		int rowTotal = missing_dao.getRowTotal_region(region);
+
+		String pageMenu = Paging.getPaging("missing_region_list.do", nowPage, // 현재 페이지 번호
+				rowTotal, // 전체 게시물 수
+				Common.Missing_Board.BLOCKLIST, // 한 페이지에 표기할 게시물 수
+				Common.Missing_Board.BLOCKPAGE); // 페이지 메뉴 수
+
+		// 조회수를 위해 저장해뒀던 show라는 정보를 세션에서 제거
+		request.getSession().removeAttribute("show");
+
+		model.addAttribute("list", list);
+		model.addAttribute("pageMenu", pageMenu);
+
+		return Common.VIEW_PATH_MISSING + "missing_list.jsp?page=" + nowPage;
+		// ?를 포함한 문구가 매핑다음에 따라온다.
+
 	}
 
 	// About us 화면이동

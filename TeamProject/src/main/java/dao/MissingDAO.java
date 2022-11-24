@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import vo.MissingRegionVO;
 import vo.MissingVO;
 
 
@@ -51,6 +52,11 @@ public class MissingDAO {
 	//전체 메인글 수 조회
 	public int getRowTotal() {
 		int count = sqlSession.selectOne("m.missing_count");
+		return count;
+	}
+	//지역 메인글 수 조회
+	public int getRowTotal_region(String region) {
+		int count = sqlSession.selectOne("m.missing_count_region",region);
 		return count;
 	}
 	
@@ -96,9 +102,9 @@ public class MissingDAO {
 	
 	
 	//지역에 맞는 메인글 찾기 
-	public List<MissingVO> selectList_region(String region) {
+	public List<MissingVO> selectList_region(MissingRegionVO mrvo) {
 		List<MissingVO> list = null;
-		list = sqlSession.selectList("m.missing_list_region", region);
+		list = sqlSession.selectList("m.missing_list_region",mrvo);
 		return list;
 	}
 	

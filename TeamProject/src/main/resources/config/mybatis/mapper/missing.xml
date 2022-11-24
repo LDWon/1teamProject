@@ -47,6 +47,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="missing_count" resultType="int">
 		select count(*) from missing where step = 0
 	</select>
+	<!-- 지역별 메인글 수 조회 -->
+	<select id="missing_count_region" resultType="int" parameterType="String">
+		select count(*) from missing where region=#{region} and step = 0
+	</select>
 	
 	
 	
@@ -108,8 +112,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<!-- 지역에 맞는 메인 글 찾기 -->
-	<select id="missing_list_region" resultType="missing" parameterType="String">
-		select * from (SELECT RANK() OVER(ORDER BY idx DESC) NO, m.* FROM missing m where step = 0) where region = #{region}
+	<select id="missing_list_region" resultType="missing" parameterType="vo.MissingRegionVO">
+		select * from (SELECT RANK() OVER(ORDER BY idx DESC) NO, m.* FROM missing m where step = 0) where region = #{region} and NO BETWEEN #{start} AND #{end}
 		
 	</select>
 	
