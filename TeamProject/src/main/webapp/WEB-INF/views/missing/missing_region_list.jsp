@@ -47,6 +47,7 @@
 				<option value="전북">전북</option>
 				<option value="전남">전남</option>
 				<option value="부산">부산</option>
+				<option value="제주">제주</option>
 				<input type="button" value="검색" onclick="missing_search(this.form);">
 			</select>
 		</p>

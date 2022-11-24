@@ -95,7 +95,6 @@ public class MissingDAO {
 	}
 	
 	
-	
 	//지역에 맞는 메인글 찾기 
 	public List<MissingVO> selectList_region(String region) {
 		List<MissingVO> list = null;
