@@ -29,6 +29,7 @@
 				var subject = f.subject.value.trim();
 				var name = f.name.value.trim();
 				var content = f.content.value;
+				var region = f.region.value;
 				
 				if (!confirm("정말 수정하시겠습니까?")) {
 					return;
@@ -46,7 +47,10 @@
 					alert('내용을 입력해주세요');
 					return;
 				}
-				
+				if (region == '선택') {
+					alert('지역을 선택해주세요');
+					return;
+				}
 				f.method="post";
 				f.action="missing_modify.do";
 				f.submit();
@@ -71,7 +75,7 @@
 					<th>지역</th>
 					<td align="center">
 						<select name="region" style="cursor:pointer">
-							<option value="전체">전체</option>
+							<option value="선택">선택</option>
 							<option value="서울">서울</option>
 							<option value="경기">경기</option>
 							<option value="부산">부산</option>

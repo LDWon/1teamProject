@@ -18,7 +18,7 @@
 			/* ----------------------------------삭제---------------------------------- */
 			function missing_del() {
 				
-				if ('${member.name}'!='${vo.name}') {
+				if ('${member.id}'!='${vo.id}') {
 					alert('이 글의 작성자만 삭제할 수 있습니다.');
 					return;
 				}
@@ -53,7 +53,7 @@
 					alert('이 글의 작성자만 수정할 수 있습니다.');
 					return;
 				} */
-				if ('${member.name}'!='${vo.name}') {
+				if ('${member.id}'!='${vo.id}') {
 					alert('이 글의 작성자만 수정할 수 있습니다.');
 					return;
 				}
@@ -93,24 +93,29 @@
 					<td colspan="6" align="center" height="50" id="subject"><b>${vo.subject}</b></td>
 				</tr>
 				<tr>
-					<th>작성자</th>
+					<th width="100">작성자</th>
 					<td align="center">${vo.name}</td>
 					
-					<th>아이디</th>
-					<td align="center">${vo.id}</td>
+					<th width="100">등록일</th>
+					<td align="center" colspan="3">${vo.regidate}</td>
 					
-					<th>ip</th>
-					<td align="center">${vo.ip}</td>
 				</tr>
 				<tr>
-					<th>지역</th>
+					<th width="100">지역</th>
 					<td align="center">${vo.region}</td>
 					
-					<th>등록일</th>
-					<td align="center">${vo.regidate}</td>
 					
-					<th>조회수</th>
+					<th width="100">조회수</th>
 					<td align="center">${vo.readhit}</td>
+					
+					<th width="150">이미지파일 여부</th>
+					<td align="center">
+					<c:if test="${vo.filename eq 'no_file'}">
+						X
+					</c:if>
+					<c:if test="${vo.filename ne 'no_file'}">
+						O
+					</c:if>
 				</tr>
 				<tr>
 					<td colspan="6"><pre>${vo.content}</pre>
