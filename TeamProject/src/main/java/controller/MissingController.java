@@ -298,7 +298,8 @@ public class MissingController {
 		List<MissingVO> list = null;
 
 		if (region.equals("전체")) { // 전체 지역 불러오기
-			list = missing_dao.selectList(map);
+//			list = missing_dao.selectList(map);
+			return "redirect:missing_list.do";
 		} else {
 			// 지역 검색해서 해당 글 불러오기
 			start = map.get("start");
