@@ -25,6 +25,7 @@ public class M_userController {
 	@Autowired
 	HttpServletRequest request;
 
+	
 	@Autowired
 	JavaMailSender mailSender;
 
