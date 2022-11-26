@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+}
+/* 화면 전체 렙 */
+.wrapper {
+	width: 100%;
+}
+/* form 랩 */
+.wrap {
+	width: 1080px;
+	margin: auto;
+}
+.main_logo{
+	width: 100%;
+	text-align: center;
+}
