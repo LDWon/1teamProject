@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	/* border:1px solid; */
+	padding: 0;
+}
+/* 화면 전체 렙 */
+.wrapper {
+	width: 100%;
+}
+.wrapper *{
+	margin-bottom: 10px;
+}
+/* form 랩 */
+.wrap {
+	width: 500px;
+	margin: auto;
+}
+.main_logo{
+	width: 100%;
+	text-align: center;
+}
+.main_logo img{
+	width:280px;
+}
+.wrap textarea{
+	width:100%;
+	
+}
+.all_agreement{
+	margin-bottom: 20px;
+}
+.consent_receive_promotional_information{
+	height: 80px;
+}
+.cancel_button{
+	width:230px;
+	height: 80px;
+	border-radius: 10px;
+	border: 0px;
+	font-size: 30px;
+	background-color: #E03B02;
+	color:white;
+	font-weight:bolder;
+	cursor:pointer;
+}
+.ok_button{
+	width:230px;
+	height: 80px;
+	border-radius: 10px;
+	border: 0px;
+	float: right;
+	font-size: 30px;
+	cursor:pointer;
+	font-weight:bolder;
+	background-color: #5EFF08;
+}
+
