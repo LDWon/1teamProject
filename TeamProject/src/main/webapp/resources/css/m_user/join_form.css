@@ -1,0 +1,92 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	/* border:1px solid; */
+	padding: 0;
+}
+/* 화면 전체 렙 */
+.wrapper {
+	width: 100%;
+}
+
+.wrapper * {
+	margin-bottom: 10px;
+}
+/* form 랩 */
+.wrap {
+	width: 420px;
+	margin: auto;
+}
+
+.main_logo {
+	width: 100%;
+	text-align: center;
+}
+
+.main_logo img {
+	width: 280px;
+}
+
+div p {
+	font-size: 30px;
+}
+
+div input {
+	width: 415px;
+	height: 30px;
+	font-size: 20px;
+	padding-left: 5px;
+}
+
+#id_ok {
+	color: #008000;
+	display: none;
+}
+
+#id_already {
+	color: #F55939;
+	display: none;
+}
+.checkId {
+	margin-left: 10px;
+	width: 95px;
+	font-size: 18px;
+	background-color: #b0b0b0;
+	height: 34px;
+	border: 0px;
+	border-radius: 5px;
+	cursor: pointer;
+	font-weight: bolder;
+	letter-spacing: 2px;
+}
+
+#id {
+	width: 300px;
+}
+
+.address_name {
+	font-size: 30px;
+}
+
+.address_button span {
+	font-size: 30px;
+	color: blue;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.sign_up_button {
+	width: 424px;
+	height: 80px;
+	margin: 0 auto;
+	margin-bottom: 30px;
+	display: block;
+	border-radius: 10px;
+	background-color: #5EFF08;
+	cursor: pointer;
+	font-size: 30px;
+	font-weight: bolder;
+	letter-spacing: 5px;
+	border:0px;
+}

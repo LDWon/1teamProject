@@ -1,8 +1,43 @@
 package vo;
 
 public class M_userVO {
-	private int prnum;
-	private String id, pwd, birth, email, tel;
+	private String id, pwd, name, birth, email, tel, mail_key, memberAddr1, memberAddr2, memberAddr3;
+	// 이메일 인증 여부 확인
+	private int mail_auth;
+	// 관리자 여부 확인
+	private int adminCk;
+
+	public int getAdminCk() {
+		return adminCk;
+	}
+
+	public void setAdminCk(int adminCk) {
+		this.adminCk = adminCk;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getPwd() {
+		return pwd;
+	}
+
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
 
 	public String getBirth() {
 		return birth;
@@ -28,28 +63,44 @@ public class M_userVO {
 		this.tel = tel;
 	}
 
-	public int getPrnum() {
-		return prnum;
+	public String getMail_key() {
+		return mail_key;
 	}
 
-	public void setPrnum(int prnum) {
-		this.prnum = prnum;
+	public void setMail_key(String mail_key) {
+		this.mail_key = mail_key;
 	}
 
-	public String getId() {
-		return id;
+	public String getMemberAddr1() {
+		return memberAddr1;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setMemberAddr1(String memberAddr1) {
+		this.memberAddr1 = memberAddr1;
 	}
 
-	public String getPwd() {
-		return pwd;
+	public String getMemberAddr2() {
+		return memberAddr2;
 	}
 
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
+	public void setMemberAddr2(String memberAddr2) {
+		this.memberAddr2 = memberAddr2;
+	}
+
+	public String getMemberAddr3() {
+		return memberAddr3;
+	}
+
+	public void setMemberAddr3(String memberAddr3) {
+		this.memberAddr3 = memberAddr3;
+	}
+
+	public int getMail_auth() {
+		return mail_auth;
+	}
+
+	public void setMail_auth(int mail_auth) {
+		this.mail_auth = mail_auth;
 	}
 
 }

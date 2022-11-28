@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="m">
+<!-- mapper : DB에 쿼리문을 요청하고 결과를 돌려받는 속성파일 -->
+
+
+	<!-- step이 0(메인 글)을 전체조회하기 -->
+	<select id="missing_list" resultType="missing" parameterType="java.util.HashMap">
+		select * from 
+		(SELECT RANK() OVER(ORDER BY idx DESC) NO, m.* FROM missing m where step = 0 and months_between(sysdate, regidate) &lt; 1) 
+		where NO BETWEEN #{start} AND #{end}
+	</select>
+	
+	
+	<!-- 메인글 작성하기 -->
+	<insert id="missing_insert" parameterType="missing">
+		insert into missing values(seq_missing_idx.nextval,
+									#{name},
+									#{id},
+									#{subject},
+									#{content},
+									#{region},
+									#{ip},
+									sysdate,
+									0,
+									seq_missing_idx.currval,
+									0,
+									#{filename}
+									)
+	</insert>
+	
+	
+	<!-- idx에 해당하는 메인 글 상세보기 -->
+	<select id="missing_view" resultType="missing" parameterType="int">
+		select * from missing where idx = #{idx}
+	</select>
+	
+	
+	<!-- idx에 해당하는 메인 글 삭제하기 -->
+	<delete id="missing_delete" parameterType="int">
+		delete from missing where idx = #{idx}
+	</delete>
+	
+	
+	
+	<!-- 메인글 수 조회 -->
+	<select id="missing_count" resultType="int">
+		select count(*) from missing where step = 0 and months_between(sysdate, regidate) &lt; 1
+	</select>
+	<!-- 지역별 메인글 수 조회 -->
+	<select id="missing_count_region" resultType="int" parameterType="String">
+		select count(*) from missing where region=#{region} and step = 0 and months_between(sysdate, regidate) &lt; 1
+	</select>
+	
+	
+	
+	
+	<!-- 조회수 증가 -->
+	<update id="missing_readhit" parameterType="int">
+		update missing set readhit = readhit + 1 where idx = #{idx}
+	</update>
+	
+	
+	
+	<!-- 메인글 수정하기 -->
+	<update id="missing_update" parameterType="missing">
+		update missing set subject = #{subject},
+							content = #{content},
+							region = #{region},
+							ip = #{ip},
+							filename = #{filename}
+							where idx = #{idx}
+									
+	</update>
+	
+	
+	<!-- 댓글추가를 위한 step+1 -->
+	<update id="missing_update_step" parameterType="missing">
+		update missing set step = step + 1 where ref = #{ref} and step > #{step}
+	</update>
+	
+	
+	
+	<!-- 댓글 작성하기 -->
+	<insert id="missing_reply" parameterType="missing">
+		insert into missing values(seq_missing_idx.nextval,
+									#{name},
+									#{id},
+									'없음',
+									#{content},
+									'없음',
+									#{ip},
+									sysdate,
+									0,
+									#{ref},
+									#{step},
+									'없음'
+									)
+	</insert>
+	
+	
+	
+	<!-- 댓글창 보여주기 -->
+	<select id="missing_list_reply" resultType="missing" parameterType="missing">
+		select * from missing where step > 0 order by step desc
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	<!-- 지역에 맞는 메인 글 찾기 -->
+	<select id="missing_list_region" resultType="missing" parameterType="vo.MissingRegionVO">
+		select * from (SELECT RANK() OVER(ORDER BY idx DESC) NO, m.* FROM missing m where step = 0 and region = #{region} and months_between(sysdate, regidate) &lt; 1) where NO BETWEEN #{start} AND #{end}
+		
+	</select>
+	
+	
+	
+	
+	<!-- 종결게시판으로 등록하기 (step을 -1로) -->
+	<update id="missing_update_find" parameterType="int">
+		update missing set step = -1 where idx = #{idx}
+	</update>
+	
+	
+	<!-- ==============장기처리관련================= -->
+	
+	<!-- step이 0(메인 글)을 장기처리글조회하기 -->
+	<select id="missing_long_term_list" resultType="missing" parameterType="java.util.HashMap">
+		select * from 
+		(SELECT RANK() OVER(ORDER BY idx DESC) NO, m.* FROM missing m where step = 0 and months_between(sysdate, regidate) >= 1) 
+		where NO BETWEEN #{start} AND #{end}
+	</select>
+	
+	
+	<!-- 장기처리글 수 조회 -->
+	<select id="missing_long_term_count" resultType="int">
+		select count(*) from missing where step = 0 and months_between(sysdate, regidate) >= 1
+	</select>
+	
+	
+	<!-- =============종결된 글 관련======================= -->
+	<!-- step이 (-1)인 해결완료 글 조회하기 -->
+	<select id="missing_find_list" resultType="missing" parameterType="java.util.HashMap">
+		select * from 
+		(SELECT RANK() OVER(ORDER BY idx DESC) NO, m.* FROM missing m where step = -1) 
+		where NO BETWEEN #{start} AND #{end}
+	</select>
+	
+	<!-- 종결처리글 수 조회 -->
+	<select id="missing_find_count" resultType="int">
+		select count(*) from missing where step = -1
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

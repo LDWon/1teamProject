@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="m">
+<!-- mapper : DB에 쿼리문을 요청하고 결과를 돌려받는 속성파일 -->
+
+	<!-- step이 0(메인 글)을 전체조회하기 -->
+	<select id="notice_list" resultType="notice" parameterType="java.util.HashMap">
+		select * from (SELECT RANK() OVER(ORDER BY idx) NO, n.* FROM notice n) 
+		where NO BETWEEN #{start} AND #{end}
+	</select>
+	
+	<!-- 공지사항 글 개수 조회 쿼리문 count(컬럼)  -->
+	<select id="notice_count" resultType="int">
+		select count(*) from notice 
+	</select>
+	
+	<!-- idx에 해당하는 메인 글 상세보기 -->
+	<select id="notice_view" resultType="notice" parameterType="int">
+		select * from notice where idx = #{idx}
+	</select>
+	
+	<!-- 공지사항 글 추가하기   -->
+	<insert id="notice_insert" parameterType="notice">
+		insert into notice values(seq_notice_idx.nextval,
+									#{name},
+									#{subject},
+									#{content},
+									sysdate,
+									seq_missing_idx.currval,
+									#{filename}
+									)
+	</insert>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

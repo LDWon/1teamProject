@@ -1,0 +1,42 @@
+--시퀀스
+create sequence seq_missing_idx;
+
+--게시판 테이블
+create table missing(
+	idx number(10) primary key, --게시판 고유번호
+	name varchar2(50) not null, --작성자명 (회원가입할 때 설정한 이름)
+	id varchar2(100) not null, -- 수정할 때 id값을 비교함 (회원테이블의 id값은 unique라 중복 불가)
+	subject varchar2(100), --글의 제목
+	content CLOB, --글의 내용
+	region varchar2(50), --실종지역
+	ip varchar2(100), --ip
+	regidate date, --등록일
+	readhit number(3) default 0, --조회수
+	ref number(10), --기준글의 번호
+	step number(3), --댓글의 순서
+	filename varchar2(100) --파일이름
+);
+
+--샘플데이터
+insert into missing values(seq_missing_idx.nextVal,
+			'일길동',
+			'1234',
+			'제목',
+			'내용',
+			'서울',
+			'0.0.0.0.1',
+			sysdate,
+			0,
+			seq_missing_idx.currVal,
+			0,
+			'no_file'
+			);
+			   
+
+
+
+<아직 보류>
+--외래키 설정
+--alter table missing add constraint fk_id foreign key(id) references m_user(id);
+
+--alter table missing add constraint fk_name foreign key(name) references m_user(name);

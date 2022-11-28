@@ -8,14 +8,51 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into m_user values(
 								#{id},
 								#{pwd},
+								#{name},
 								#{birth},
 								#{email},
-								#{tel}
+								#{tel},
+								#{mail_key},
+								0,
+								#{memberAddr1},
+								#{memberAddr2},
+								#{memberAddr3},
+								0
 								)
 	</insert>
 	
 	<select id="selectAllId" resultType="int" parameterType="String">
 		select count(*) from m_user where id= #{id}
+	</select>
+	
+	<!-- 이메일인증을 위한 랜덤번호 저장 -->
+	<update id="updateMailKey" parameterType="m_user">
+		update m_user set mail_key=#{mail_key} where email=#{email} and id=#{id}
+	</update>
+	
+	<!-- 메일 인증시 mail_auth를 기본값 0에서 1로 변경(로그인 허용) -->
+	<update id="updateMailAuth" parameterType="m_user">	
+		update m_user set mail_auth=1 where email=#{email} and mail_key=#{mail_key}
+	</update>
+	
+	<!-- 로그인시 인증 체크 확인 -->
+	<select id="emailAuthFail" parameterType="String" resultType="int">
+		select count(*) from m_user where id=#{id} and mail_auth=1
+	</select>
+	
+	<!-- 로그인 가능여부 확인 -->
+	<!-- 이메일 인증여부 -->
+	<select id="infoConfirmEmail" parameterType="m_user" resultType="int">
+		select mail_auth from m_user where id=#{id}
+	</select>
+	<!-- id 일치 여부 -->
+	<select id="infoConfirmId" parameterType="m_user" resultType="String">
+		select pwd from m_user where id=#{id}
+	</select>
+	
+	<!-- 로그인 성공시 회원정보 가져오기 -->
+	<select id="get_member_information" parameterType="m_user" resultType="m_user">
+		select * from m_user where id=#{id}
 	</select>
 </mapper>
 
