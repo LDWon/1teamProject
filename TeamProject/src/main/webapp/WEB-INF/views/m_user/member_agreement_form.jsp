@@ -13,7 +13,7 @@
 		var reqConsent2 = f.required_consent2.checked;
 
 		if (reqConsent1 == true && reqConsent2 == true) {
-			f.action = "join_form.do";
+			f.action = "agreement_confirm.do";
 			f.submit();
 		} else {
 			alert("FIND 이용약관과 개인정보 수집 및 이용에 대한 안내 모두 동의해주세요.");

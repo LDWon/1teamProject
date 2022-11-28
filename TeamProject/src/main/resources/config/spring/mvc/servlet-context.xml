@@ -44,6 +44,11 @@
 			<beans:bean id="AdminIntreceptor"
 				class="interceptor.AdminInterceptor"></beans:bean>
 		</interceptor>
+		<interceptor>
+			<mapping path="/join_form.do"></mapping>
+			<beans:bean id="AgreementInterceptor"
+				class="interceptor.AgreementInterceptor"></beans:bean>
+		</interceptor>
 	</interceptors>
 
 </beans:beans>
