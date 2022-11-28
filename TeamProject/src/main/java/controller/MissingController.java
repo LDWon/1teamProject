@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -37,6 +36,8 @@ public class MissingController {
 	// 메인 페이지
 	@RequestMapping(value = { "/", "/main.do" })
 	public String main() {
+		HttpSession session = request.getSession();
+		session.setAttribute("agreement", false);
 		return Common.VIEW_PATH_MAIN + "main.jsp";
 	}
 
@@ -145,7 +146,7 @@ public class MissingController {
 		String show = (String) session.getAttribute("show");
 
 		if (show == null) {
-			int res = missing_dao.update_readhit(idx);
+			missing_dao.update_readhit(idx);
 			// 세션에 "show"라는 이름으로 저장
 			session.setAttribute("show", "0");
 		}
@@ -400,7 +401,7 @@ public class MissingController {
 		String show = (String) session.getAttribute("show");
 
 		if (show == null) {
-			int res = missing_dao.update_readhit(idx);
+			missing_dao.update_readhit(idx);
 			// 세션에 "show"라는 이름으로 저장
 			session.setAttribute("show", "0");
 		}
@@ -461,7 +462,7 @@ public class MissingController {
 		String show = (String) session.getAttribute("show");
 
 		if (show == null) {
-			int res = missing_dao.update_readhit(idx);
+			missing_dao.update_readhit(idx);
 			// 세션에 "show"라는 이름으로 저장
 			session.setAttribute("show", "0");
 		}
