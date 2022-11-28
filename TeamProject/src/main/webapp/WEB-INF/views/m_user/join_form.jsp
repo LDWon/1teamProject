@@ -185,7 +185,7 @@
 <body>
 	<form name="joinForm" method="post" action="">
 		<div class="wrapper">
-			<div  class="wrap">
+			<div class="wrap">
 				<!-- 메인상표 -->
 				<div class="main_logo">
 					<!-- <h1>FIND</h1> -->
@@ -261,7 +261,8 @@
 					</div>
 				</div>
 				<!-- 가입하기 버튼 -->
-				<input class="sign_up_button" type="button" value="가입하기" onclick="join(this.form)">
+				<input class="sign_up_button" type="button" value="가입하기"
+					onclick="join(this.form)">
 			</div>
 		</div>
 	</form>
