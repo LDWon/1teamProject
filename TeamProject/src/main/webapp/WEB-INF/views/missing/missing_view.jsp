@@ -13,6 +13,7 @@
 			th {background-color: #6799FF;}
 			td {background-color: #D9E5FF;}
 			#subject {background-color: #6799FF;}
+			#reply {margin-bottom: 120px;}
 		</style>
 		<script src="${pageContext.request.contextPath}/resources/js/httpRequest.js"></script>
 		<script>
@@ -180,7 +181,7 @@
 				</tr>
 			</table>
 			<br>
-			<div align="center">
+			<div align="center" id="reply">
 				<pre><textarea name="content" rows="4" cols="100" style="resize:none;" placeholder="댓글을 입력하세요."></textarea></pre>
 				<input type="button" value="등록" onclick="reply(this.form);">
 	       	</div>

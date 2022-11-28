@@ -9,7 +9,8 @@
 		<title>Insert title here</title>
 		<link rel="stylesheet" type="text/css" href="resources/css/footer.css"">
 		<style>
-			table {border-collapse: collapse;}
+			table {border-collapse: collapse;
+					margin-bottom: 120px;}
 			th {background-color: #6799FF;}
 			td {background-color: #D9E5FF;}
 			#subject {background-color: #6799FF;}

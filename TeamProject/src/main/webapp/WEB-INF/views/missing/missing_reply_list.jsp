@@ -9,7 +9,8 @@
 		<title>Insert title here</title>
 		<link rel="stylesheet" type="text/css" href="resources/css/footer.css"">
 		<style>
-			table {border-collapse: collapse;}
+			table {border-collapse: collapse;
+			margin-bottom: 120px;}
 			th {background-color: #6799FF;}
 			td {background-color: #D9E5FF}
 		</style>
@@ -38,7 +39,7 @@
 				</c:forEach>
 				<tr>
 					<td colspan="3" align="right">
-						<input type="button" value="뒤로가기" onclick="location.href='missing_view.do?idx=${param.idx}&page=${param.page}'">
+						<input type="button" value="본문보기" onclick="location.href='missing_view.do?idx=${param.idx}&page=${param.page}'">
 						<input type="button" value="목록보기" onclick="location.href='missing_list.do?page=${param.page}'">
 					</td>
 				</tr>
