@@ -7,17 +7,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath }/resources/css/m_user/join_form.css">
-<style type="text/css">
-#id_ok {
-	color: #008000;
-	display: none;
-}
 
-#id_already {
-	color: #F55939;
-	display: none;
-}
-</style>
 <script
 	src="${pageContext.request.contextPath }/resources/js/httpRequest.js"></script>
 <!-- 외부 스크립트 파일을 연결하는 코드 -->
