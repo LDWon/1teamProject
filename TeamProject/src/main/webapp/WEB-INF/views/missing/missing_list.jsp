@@ -7,28 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="resources/css/footer.css"">
-<style>
-a {
-	text-decoration: none;
-}
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath }/resources/css/missing/missing_list.css"">
 
-table {
-	border-collapse: collapse;
-}
-
-th {
-	background-color: #6799FF;
-}
-
-td {
-	background-color: #D9E5FF
-}
-
-#pageMenu {
-	background-color: #6799FF;
-}
-</style>
 <script>
 	function missing_search(f) {
 		var region = f.region.value;
@@ -44,33 +25,35 @@ td {
 	<div class="wrapper">
 		<div class="wrap">
 			<h1 align="center">실종자 게시판</h1>
-			<form>
-				<p align="center">
-					<select name="region" id="region" style="cursor: pointer">
-						<option value="전체">전체</option>
-						<option value="서울">서울</option>
-						<option value="경기">경기</option>
-						<option value="부산">부산</option>
-						<option value="대전">대전</option>
-						<option value="대구">대구</option>
-						<option value="울산">울산</option>
-						<option value="세종">세종</option>
-						<option value="광주">광주</option>
-						<option value="강원">강원</option>
-						<option value="충북">충북</option>
-						<option value="충남">충남</option>
-						<option value="경북">경북</option>
-						<option value="경남">경남</option>
-						<option value="전북">전북</option>
-						<option value="전남">전남</option>
-						<option value="부산">부산</option>
-						<option value="제주">제주</option>
-						<input type="button" value="검색"
-						onclick="missing_search(this.form);">
-					</select>
-				</p>
-			</form>
-			<table border="1" align="center" width="800" ; height="400";>
+			<div class="region_container">
+				<form>
+					<p align="center">
+						<select name="region" id="region" style="cursor: pointer">
+							<option value="전체">전체</option>
+							<option value="서울">서울</option>
+							<option value="경기">경기</option>
+							<option value="부산">부산</option>
+							<option value="대전">대전</option>
+							<option value="대구">대구</option>
+							<option value="울산">울산</option>
+							<option value="세종">세종</option>
+							<option value="광주">광주</option>
+							<option value="강원">강원</option>
+							<option value="충북">충북</option>
+							<option value="충남">충남</option>
+							<option value="경북">경북</option>
+							<option value="경남">경남</option>
+							<option value="전북">전북</option>
+							<option value="전남">전남</option>
+							<option value="부산">부산</option>
+							<option value="제주">제주</option>
+							<input type="button" value="검색"
+							onclick="missing_search(this.form);">
+						</select>
+					</p>
+				</form>
+			</div>
+			<table border="1" align="center">
 				<tr>
 					<th width="50">번호</th>
 					<th width="300">제목</th>
@@ -99,12 +82,14 @@ td {
 				<tr>
 					<td colspan="6" align="center" id="pageMenu">${pageMenu}</td>
 				</tr>
-				<tr>
-					<td colspan="6" align="right"><c:if test="${member!=null }">
-							<input type="button" value="등록하기" style="cursor: pointer"
-								onclick="location.href='missing_insert_form.do?page=${param.page}'">
-						</c:if></td>
-				</tr>
+				<c:if test="${member!=null }">
+					<tr>
+						<td colspan="6" align="right"><input type="button"
+							value="등록하기" style="cursor: pointer"
+							onclick="location.href='missing_insert_form.do?page=${param.page}'">
+						</td>
+					</tr>
+				</c:if>
 			</table>
 		</div>
 	</div>

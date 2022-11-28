@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+a {
+	text-decoration: none;
+}
+h1{
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+.region_container{
+	margin-bottom: 20px;
+}
+table {
+	border-collapse: collapse;
+	width: 100%;
+	
+}
+table tr{
+	height: 42px;
+}
+th {
+	background-color: #6799FF;
+}
+
+td {
+	background-color: #D9E5FF
+}
+
+#pageMenu {
+	background-color: #6799FF;
+}
