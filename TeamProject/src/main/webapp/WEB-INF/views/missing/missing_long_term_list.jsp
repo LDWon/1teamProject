@@ -15,45 +15,11 @@
 			td {background-color: #D9E5FF}
 			#pageMenu {background-color: #6799FF;}
 		</style>
-		<script>
-			function missing_search(f) {
-				var region = f.region.value;
-				
-				f.method="get";
-				f.action="missing_region_list.do";
-				f.submit();
-			}
-		</script>
 	</head>
 	<body>
 	<jsp:include page="../main/top.jsp" flush="false" />
-		<h1 align="center">실종자 게시판</h1>
-		<form>
-		<p align="center">
-			<select name="region" id="region" style="cursor:pointer"> 
-				<option value="전체">전체</option>
-				<option value="서울">서울</option>
-				<option value="경기">경기</option>
-				<option value="부산">부산</option>
-				<option value="대전">대전</option>
-				<option value="대구">대구</option>
-				<option value="울산">울산</option>
-				<option value="세종">세종</option>
-				<option value="광주">광주</option>
-				<option value="강원">강원</option>
-				<option value="충북">충북</option>
-				<option value="충남">충남</option>
-				<option value="경북">경북</option>
-				<option value="경남">경남</option>
-				<option value="전북">전북</option>
-				<option value="전남">전남</option>
-				<option value="부산">부산</option>
-				<option value="제주">제주</option>
-				<input type="button" value="검색" onclick="missing_search(this.form);">
-			</select>
-		</p>
-		</form>
-		<table border="1" align="center" width ="800"; height="400";>
+		<h1 align="center">장기처리 게시판</h1>
+		<table border="1" align="center"  width ="800"; height="400";>
 			<tr>
 				<th width="50">번호</th>
 				<th width="300">제목</th>
@@ -66,7 +32,7 @@
 				<tr>
 					<td align="center">${vo.idx}</td>
 					<td>
-					<a href="missing_view.do?idx=${vo.idx}&page=${param.page}">
+					<a href="missing_long_term_view.do?idx=${vo.idx}&page=${param.page}">
 						<font color="black">${vo.subject}</font>
 					</a>
 					</td>
@@ -82,13 +48,6 @@
 			<tr>
 				<td colspan="6" align="center" id="pageMenu"> 
 					${pageMenu}
-				</td>
-			</tr>
-			<tr>
-				<td colspan="6" align="right">
-					<c:if test="${member!=null }">
-						<input type="button" value="등록하기" style="cursor:pointer" onclick="location.href='missing_insert_form.do?page=${param.page}'">
-					</c:if>
 				</td>
 			</tr>
 		</table>
