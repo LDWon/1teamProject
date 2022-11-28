@@ -1,15 +1,22 @@
 @charset "UTF-8";
-
+.footer_wrap{
+	width: 100%;
+	margin: 0 auto;
+	bottom: 0;
+	align-content: center;
+	position: absolute;
+	
+}
 footer {
-  width: 100%;
+  width: 1080px;
   height: 90px;
   bottom: 0px;
-  position: fixed;
   border-top: 1px solid #000000;
   padding-top: 15px;
   color: #808080;
   font-size: 11px;
   background-color: #c0c0c0; 
+  margin:0 auto;
 }
 
 footer a {
