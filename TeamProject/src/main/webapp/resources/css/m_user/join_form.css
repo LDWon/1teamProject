@@ -39,6 +39,15 @@ div input {
 	padding-left: 5px;
 }
 
+#id_ok {
+	color: #008000;
+	display: none;
+}
+
+#id_already {
+	color: #F55939;
+	display: none;
+}
 .checkId {
 	margin-left: 10px;
 	width: 95px;
@@ -48,6 +57,8 @@ div input {
 	border: 0px;
 	border-radius: 5px;
 	cursor: pointer;
+	font-weight: bolder;
+	letter-spacing: 2px;
 }
 
 #id {
