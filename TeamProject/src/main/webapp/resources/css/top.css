@@ -72,6 +72,7 @@ a {
 	font-weight: bold; /* 폰트를 굵게 */
 	font-family: "Trebuchet MS", Dotum, Arial;
 	/* 기본 폰트 적용, 시스템 폰트를 종류별로 순서대로 */
+	cursor: pointer;
 }
 .top_menu ul li a:hover {
 	color: #ffff80;  

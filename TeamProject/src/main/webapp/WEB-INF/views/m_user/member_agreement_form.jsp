@@ -40,14 +40,18 @@
 				<!-- 회원약관 동의 -->
 				<!-- 모두 동의 -->
 				<div class="all_agreement">
-					<input type="checkbox" value="selectAll" onclick="selectAll(this)">
-					<span>FIND 이용약관, 개인정보 수집 및 이용, 위치기반서비스 이용약관(선택), 프로모션 정보 수신(선택)에
-						모두 동의합니다.</span>
+					<label for="select_all"> <input id="select_all"
+						type="checkbox" value="selectAll" onclick="selectAll(this)">
+						FIND 이용약관, 개인정보 수집 및 이용, 위치기반서비스 이용약관(선택), 프로모션 정보 수신(선택)에 모두
+						동의합니다.
+					</label>
 				</div>
 				<!-- 이용약관 동의 -->
 				<div>
-					<input name="required_consent1" type="checkbox">
-					<span>FIND 이용약관 동의(필수)</span>
+					<label for="select_required_consent1"> <input
+						id="select_required_consent1" name="required_consent1"
+						type="checkbox"> FIND 이용약관 동의(필수)
+					</label>
 				</div>
 				<div>
 					<textarea readonly="readonly" rows="8" cols="50">여러분을 환영합니다.
@@ -174,8 +178,10 @@
 				</div>
 				<!-- 개인정보 수집 및 이용 동의 -->
 				<div>
-					<input name="required_consent2" type="checkbox">
-					<span>개인정보 수집 및 이용 동의(필수)</span>
+					<label for="select_required_consent2"> <input
+						id="select_required_consent2" name="required_consent2"
+						type="checkbox"> 개인정보 수집 및 이용 동의(필수)
+					</label>
 				</div>
 				<div>
 					<textarea readonly="readonly" rows="8" cols="50">개인정보보호법에 따라 FIND에 회원가입 신청하시는 분께 수집하는 개인정보의 항목, 개인정보의 수집 및 이용목적, 개인정보의 보유 및 이용기간, 동의 거부권 및 동의 거부 시 불이익에 관한 사항을 안내 드리오니 자세히 읽은 후 동의하여 주시기 바랍니다.
@@ -244,8 +250,10 @@
 				</div>
 				<!-- 위치기반 서비스 이용약관 동의 -->
 				<div>
-					<input name="optional_consent1" type="checkbox">
-					<span>위치기반서비스 이용약관 동의(선택)</span>
+					<label for="select_optional_consent1"> <input
+						id="select_optional_consent1" name="optional_consent1"
+						type="checkbox"> 위치기반서비스 이용약관 동의(선택)
+					</label>
 				</div>
 				<div>
 					<textarea readonly="readonly" rows="8" cols="50">위치기반서비스 이용약관에 동의하시면, 위치를 활용한 광고 정보 수신 등을 포함하는 FIND 위치기반 서비스를 이용할 수 있습니다.
@@ -322,17 +330,22 @@
 				</div>
 				<!-- 프로모션 정보 수신 동의 -->
 				<div>
-					<input name="optional_consent2" type="checkbox">
-					<span>프로모션 정보 수신 동의(선택)</span>
+					<label for="select_optional_consent2"> <input
+						id="select_optional_consent2" name="optional_consent2"
+						type="checkbox"> 프로모션 정보 수신 동의(선택)
+					</label>
 				</div>
 				<div>
-					<textarea class="consent_receive_promotional_information" readonly="readonly" rows="8" cols="20">FIND에서 제공하는 이벤트/혜택 등 다양한 정보를 휴대전화(FIND앱 알림 또는 문자), 이메일로 받아보실 수 있습니다. 일부 서비스(별도 회원 체계로 운영하거나 FIND 가입 이후 추가 가입하여 이용하는 서비스 등)의 경우, 개별 서비스에 대해 별도 수신 동의를 받을 수 있으며, 이때에도 수신 동의에 대해 별도로 안내하고 동의를 받습니다.</textarea>
+					<textarea class="consent_receive_promotional_information"
+						readonly="readonly" rows="8" cols="20">FIND에서 제공하는 이벤트/혜택 등 다양한 정보를 휴대전화(FIND앱 알림 또는 문자), 이메일로 받아보실 수 있습니다. 일부 서비스(별도 회원 체계로 운영하거나 FIND 가입 이후 추가 가입하여 이용하는 서비스 등)의 경우, 개별 서비스에 대해 별도 수신 동의를 받을 수 있으며, 이때에도 수신 동의에 대해 별도로 안내하고 동의를 받습니다.</textarea>
 				</div>
 				<div class="ok_cancel_button_container">
-				<!-- 취소버튼 -->
-					<input class="cancel_button" type="button" value="취소" onclick="location.href='main.do'">
-				<!-- 확인버튼 -->
-					<input class="ok_button" type="button" value="확인" onclick="check(this.form)">
+					<!-- 취소버튼 -->
+					<input class="cancel_button" type="button" value="취소"
+						onclick="location.href='main.do'">
+					<!-- 확인버튼 -->
+					<input class="ok_button" type="button" value="확인"
+						onclick="check(this.form)">
 				</div>
 			</div>
 		</div>
