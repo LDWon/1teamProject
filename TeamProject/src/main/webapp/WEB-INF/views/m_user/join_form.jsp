@@ -1,25 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath }/resources/css/m_user/join_form.css">
 <style type="text/css">
-	#id_ok{
-		color: #008000;
-		display: none;
-	}
-	#id_already{
-		color: #F55939;
-		display: none;	
-	}
+#id_ok {
+	color: #008000;
+	display: none;
+}
+
+#id_already {
+	color: #F55939;
+	display: none;
+}
 </style>
-<script src="${pageContext.request.contextPath }/resources/js/httpRequest.js"></script>
+<script
+	src="${pageContext.request.contextPath }/resources/js/httpRequest.js"></script>
 <!-- 외부 스크립트 파일을 연결하는 코드 -->
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script
+	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <!-- jquery문 사용을 위한 -->
-﻿<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>﻿
+﻿
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+﻿
 <script type="text/javascript">
 	//회원 등록
 	function join(f) {
@@ -33,53 +40,53 @@
 		var memberAddr1 = f.memberAddr1.value;
 		var memberAddr2 = f.memberAddr2.value;
 		var memberAddr3 = f.memberAddr3.value;
-		var warnMsg = $(".mail_input_box_warn");    // 이메일 입력 경고글
+		var warnMsg = $(".mail_input_box_warn"); // 이메일 입력 경고글
 		var email_check = false;
-		
+
 		//유효성검사
-		if (id=="") {
+		if (id == "") {
 			alert("아이디를 입력해주세요.");
 			f.id.focus();
-		}else if (f.idDuplication.value=="idUncheck") {
+		} else if (f.idDuplication.value == "idUncheck") {
 			alert("아이디 중복체크를 해주세요.");
-		}else if (pwd=="") {
+		} else if (pwd == "") {
 			alert("비밀번호를 입력해주세요.");
 			f.pwd.focus();
-		}else if (pwdChk=="") {
+		} else if (pwdChk == "") {
 			alert("다시 한번 비밀번호를 입력해주세요.");
 			f.pwdChk.focus();
-		}else if (name=="") {
+		} else if (name == "") {
 			alert("이름을 입력해주세요.");
 			f.name.focus();
-		}else if (birth=="") {
+		} else if (birth == "") {
 			alert("생년월일을 입력해주세요.");
 			f.birth.focus();
-		}else if (email=="") {
+		} else if (email == "") {
 			alert("이메일을 입력해주세요.");
 			f.email.focus();
-		}else if (tel=="") {
+		} else if (tel == "") {
 			alert("전화번호를 입력해주세요.");
 			f.tel.focus();
-		}else if (memberAddr1==""||memberAddr2=="") {
+		} else if (memberAddr1 == "" || memberAddr2 == "") {
 			alert("주소를 입력해주세요.")
-		}else if (mailFormCheck(email)) {
+		} else if (mailFormCheck(email)) {
 			warnMsg.html("올바른 이메일 형식입니다.");
-			warnMsg.css("color","green");
-			warnMsg.css("display","inline-block");
+			warnMsg.css("color", "green");
+			warnMsg.css("display", "inline-block");
 			email_check = true;
-		}else if (!mailFormCheck(email)) {
+		} else if (!mailFormCheck(email)) {
 			alert("올바르지 못한 이메일 형식입니다.")
 			warnMsg.html("올바르지 못한 이메일 형식입니다.");
-			warnMsg.css("color","red");
-			warnMsg.css("display","inline-block");
+			warnMsg.css("color", "red");
+			warnMsg.css("display", "inline-block");
 			email_check = false;
 			f.email.focus();
 		}
-		
+
 		//비밀번호 일치 확인
-		if(pwd!=pwdChk){
+		if (pwd != pwdChk) {
 			alert("비밀번호가 일치하지 않습니다.");
-		}else if (id != "" && pwd != "" && name != "" && birth != ""
+		} else if (id != "" && pwd != "" && name != "" && birth != ""
 				&& email_check == true && tel != "" && memberAddr1 != ""
 				&& pwd == pwdChk && f.idDuplication.value == "idCheck") {
 			alert("회원가입이 완료되었습니다.\n이메일 인증을 진행해주세요!");
@@ -163,6 +170,7 @@
 				$(".address_input_2").val(addr);
 				// 상세주소 입력란 disabled 속성 변경 및 커서를 상세주소 필드로 이동한다.
 				$(".address_input_3").attr("readonly", false);
+				$(".address_input_3").attr("placeholder", "상세주소를 입력해주세요");
 				$(".address_input_3").focus();
 			}
 		}).open();
@@ -176,77 +184,86 @@
 </head>
 <body>
 	<form name="joinForm" method="post" action="">
-		<!-- 메인상표 -->
-		<h1>FIND</h1>
-		<!-- 아이디 입력 -->
-		<div>
-			<p>아이디</p>
-			<input name="id" id="id" type="text" placeholder="아이디를 입력해주세요">
-			<!-- 아이디 중복확인 -->
-			<button type="button" onclick="fn_dbCheckId(this.form)" name="dbCheckId" class="checkId">
-				중복확인
-			</button>
-			<!-- 아이디 중복확인 체크여부 -->
-			<input type="hidden" name="idDuplication" value="idUncheck">
-			<span id="id_ok">사용 가능한 아이디입니다.</span>
-			<span id="id_already">이미 존재하는 아이디 입니다.</span>
-		</div>
-		<!-- 비밀번호 입력 -->
-		<div>
-			<p>비밀번호</p>
-			<input name="pwd" type="password" placeholder="비밀번호를 입력해주세요">
-		</div>
-		<div>
-			<p>비밀번호 재확인</p>
-			<input name="pwdChk" type="password" placeholder="비밀번호를 다시 입력해주세요">
-		</div>
-		<!-- 이름 입력 -->
-		<div>
-			<p>이름</p>
-			<input name="name" type="text">
-		</div>
-		<!-- 생년월일 -->
-		<div>
-			<p>생년월일</p>
-			<input name="birth" type="text" placeholder="6자리 입력해주세요(예:950118)">
-		</div>
-		<!-- 이메일 입력 -->
-		<div>
-			<p>이메일</p>
-			<input name="email" type="text" placeholder="이메일을 입력해주세요">
-			<!-- 이메일 형식이 올바르지 않을 경우 뜨는 경고글 -->
-			<span class="mail_input_box_warn" style="display: none;"></span>
-		</div>
-		<!-- 휴대전화 입력 -->
-		<div>
-			<p>휴대전화</p>
-			<input name="tel" type="text" placeholder="-없이 입력해주세요">
-		</div>
-		<!-- 주소 입력 -->
-		<div class="address_wrap">
-			<div class="address_name">주소</div>
-			<div class="address_input_1_wrap">
-				<div class="address_input_1_box">
-					<input class="address_input_1" name="memberAddr1" readonly="readonly">
+		<div class="wrapper">
+			<div  class="wrap">
+				<!-- 메인상표 -->
+				<div class="main_logo">
+					<!-- <h1>FIND</h1> -->
+					<img src="resources/img/logo_find.png">
 				</div>
-				<div class="address_button" onclick="execution_daum_address()">
-					<span>주소 찾기</span>
+				<!-- 아이디 입력 -->
+				<div>
+					<p>아이디</p>
+					<input name="id" id="id" type="text" placeholder="아이디를 입력해주세요">
+					<!-- 아이디 중복확인 -->
+					<button type="button" onclick="fn_dbCheckId(this.form)"
+						name="dbCheckId" class="checkId">중복확인</button>
+					<!-- 아이디 중복확인 체크여부 -->
+					<input type="hidden" name="idDuplication" value="idUncheck">
+					<span id="id_ok">사용 가능한 아이디입니다.</span> <span id="id_already">이미
+						존재하는 아이디 입니다.</span>
 				</div>
-				<div class="clearfix"></div>
+				<!-- 비밀번호 입력 -->
+				<div>
+					<p>비밀번호</p>
+					<input name="pwd" type="password" placeholder="비밀번호를 입력해주세요">
+				</div>
+				<div>
+					<p>비밀번호 재확인</p>
+					<input name="pwdChk" type="password" placeholder="비밀번호를 다시 입력해주세요">
+				</div>
+				<!-- 이름 입력 -->
+				<div>
+					<p>이름</p>
+					<input name="name" type="text">
+				</div>
+				<!-- 생년월일 -->
+				<div>
+					<p>생년월일</p>
+					<input name="birth" type="text" placeholder="6자리 입력해주세요(예:950118)">
+				</div>
+				<!-- 이메일 입력 -->
+				<div>
+					<p>이메일</p>
+					<input name="email" type="text" placeholder="이메일을 입력해주세요">
+					<!-- 이메일 형식이 올바르지 않을 경우 뜨는 경고글 -->
+					<span class="mail_input_box_warn" style="display: none;"></span>
+				</div>
+				<!-- 휴대전화 입력 -->
+				<div>
+					<p>휴대전화</p>
+					<input name="tel" type="text" placeholder="-없이 입력해주세요">
+				</div>
+				<!-- 주소 입력 -->
+				<div class="address_wrap">
+					<div class="address_name">주소</div>
+					<div class="address_input_1_wrap">
+						<div class="address_input_1_box">
+							<input class="address_input_1" name="memberAddr1"
+								readonly="readonly" placeholder="주소찾기 버튼을 이용해주세요">
+						</div>
+						<div class="address_button" onclick="execution_daum_address()">
+							<span>주소 찾기</span>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="address_input_2_wrap">
+						<div class="address_input_2_box">
+							<input class="address_input_2" name="memberAddr2"
+								readonly="readonly" placeholder="주소찾기 버튼을 이용해주세요">
+						</div>
+					</div>
+					<div class="address_input_3_wrap">
+						<div class="address_input_3_box">
+							<input class="address_input_3" name="memberAddr3"
+								readonly="readonly" placeholder="주소찾기 버튼을 이용해주세요">
+						</div>
+					</div>
+				</div>
+				<!-- 가입하기 버튼 -->
+				<input class="sign_up_button" type="button" value="가입하기" onclick="join(this.form)">
 			</div>
-			<div class="address_input_2_wrap">
-				<div class="address_input_2_box">
-					<input class="address_input_2" name="memberAddr2" readonly="readonly">
-				</div>
-			</div>
-			<div class="address_input_3_wrap">
-				<div class="address_input_3_box">
-					<input class="address_input_3" name="memberAddr3" readonly="readonly">
-				</div>
-			</div>
 		</div>
-		<!-- 가입하기 버튼 -->
-		<input type="button" value="가입하기" onclick="join(this.form)">
 	</form>
 </body>
 </html>
