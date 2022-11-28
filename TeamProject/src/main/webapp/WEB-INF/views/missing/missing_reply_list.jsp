@@ -9,7 +9,8 @@
 		<title>Insert title here</title>
 		<link rel="stylesheet" type="text/css" href="resources/css/footer.css"">
 		<style>
-			table {border-collapse: collapse;}
+			table {border-collapse: collapse;
+			margin-bottom: 120px;}
 			th {background-color: #6799FF;}
 			td {background-color: #D9E5FF}
 		</style>
@@ -20,14 +21,17 @@
 		<h1 align="center">'${param.subject}'의 댓글</h1>
 		<table border="1" align="center" width="800">
 				<tr>
-					<th width="100">익명(ip)</th>
+					<th width="100">작성자</th>
 					<th width="520">내용</th>
 					<th>작성날짜</th>
 				</tr>
 				<c:forEach var="vo" items="${list}">
 					<c:if test="${param.idx eq vo.ref}">
 					<tr>
-						<td align="center">${vo.ip}</td>
+						<c:set var="totalLength" value="${fn:length(vo.name) }" />
+						<c:set var="first" value="${fn:substring(vo.name, 0, 1) }" />
+						<c:set var="last" value="${fn:substring(vo.name, 2, totalLength) }" />
+						<td align="center">${first}*${last}</td>
 						<td>${vo.content}</td>
 						<td align="center">${vo.regidate}</td>
 					</tr>
@@ -35,7 +39,7 @@
 				</c:forEach>
 				<tr>
 					<td colspan="3" align="right">
-						<input type="button" value="뒤로가기" onclick="location.href='missing_view.do?idx=${param.idx}&page=${param.page}'">
+						<input type="button" value="본문보기" onclick="location.href='missing_view.do?idx=${param.idx}&page=${param.page}'">
 						<input type="button" value="목록보기" onclick="location.href='missing_list.do?page=${param.page}'">
 					</td>
 				</tr>

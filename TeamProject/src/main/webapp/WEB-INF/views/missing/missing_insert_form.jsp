@@ -42,7 +42,7 @@
 		<h1 align="center">게시글 등록</h1>
 		<form enctype="multipart/form-data">
 			<table border="1" align="center"  width ="800"; height="400";>
-			<input type="hidden" name="id" value="임시아이디">
+			<input type="hidden" name="id" value="${member.id}">
 				<tr>
 					<th>제목</th>
 					<td colspan="3"><input name="subject"></td>
