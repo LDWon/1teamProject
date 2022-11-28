@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -95,7 +96,7 @@
 					alert('이 글의 작성자만 이용할 수 있습니다.');
 					return;
 				}
-				if (!confirm("종결 게시판으로 이동합니다.\r\n계속하시겠습니까?")){
+				if (!confirm("이 글은 종결 게시판으로 이동합니다.\r\n계속하시겠습니까?")){
 					return;
 				}
 				var url = "missing_find.do";
@@ -111,10 +112,10 @@
 					var json = eval(data);
 					
 					if (json[0].param == 'yes'){
-						alert('해결 완료!\r\n목록으로 돌아갑니다.');
-						location.href="missing_list.do?page=${param.page}";
+						alert('해결 완료!\r\n종결 게시판 목록으로 이동합니다.');
+						location.href="missing_find_list.do?page=${param.page}";
 					} else {
-						alert('삭제 실패');
+						alert('실패');
 					}
 				}
 			}
@@ -134,7 +135,10 @@
 				</tr>
 				<tr>
 					<th width="100">작성자</th>
-					<td align="center">${vo.name}</td>
+					<c:set var="totalLength" value="${fn:length(vo.name) }" />
+					<c:set var="first" value="${fn:substring(vo.name, 0, 1) }" />
+					<c:set var="last" value="${fn:substring(vo.name, 2, totalLength) }" />
+					<td align="center">${first}*${last}</td>
 					
 					<th width="100">등록일</th>
 					<td align="center" colspan="3">${vo.regidate}</td>

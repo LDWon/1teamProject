@@ -143,6 +143,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from missing where step = 0 and months_between(sysdate, regidate) >= 1
 	</select>
 	
+	
+	<!-- =============종결된 글 관련======================= -->
+	<!-- step이 (-1)인 해결완료 글 조회하기 -->
+	<select id="missing_find_list" resultType="missing" parameterType="java.util.HashMap">
+		select * from 
+		(SELECT RANK() OVER(ORDER BY idx DESC) NO, m.* FROM missing m where step = -1) 
+		where NO BETWEEN #{start} AND #{end}
+	</select>
+	
+	<!-- 종결처리글 수 조회 -->
+	<select id="missing_find_count" resultType="int">
+		select count(*) from missing where step = -1
+	</select>
 </mapper>
 
 

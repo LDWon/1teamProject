@@ -53,7 +53,7 @@
 			</select>
 		</p>
 		</form>
-		<table border="1" align="center"  width ="800"; height="400";>
+		<table border="1" align="center" width ="800"; height="400";>
 			<tr>
 				<th width="50">번호</th>
 				<th width="300">제목</th>
@@ -70,7 +70,10 @@
 						<font color="black">${vo.subject}</font>
 					</a>
 					</td>
-					<td align="center">${vo.name}</td>
+					<c:set var="totalLength" value="${fn:length(vo.name) }" />
+					<c:set var="first" value="${fn:substring(vo.name, 0, 1) }" />
+					<c:set var="last" value="${fn:substring(vo.name, 2, totalLength) }" />
+					<td align="center">${first}*${last}</td>
 					<td align="center">${vo.region}</td>
 					<td align="center">${fn:split(vo.regidate,' ')[0]}</td>
 					<td align="center">${vo.readhit}</td>

@@ -27,7 +27,10 @@
 				<c:forEach var="vo" items="${list}">
 					<c:if test="${param.idx eq vo.ref}">
 					<tr>
-						<td align="center">${vo.name}</td>
+						<c:set var="totalLength" value="${fn:length(vo.name) }" />
+						<c:set var="first" value="${fn:substring(vo.name, 0, 1) }" />
+						<c:set var="last" value="${fn:substring(vo.name, 2, totalLength) }" />
+						<td align="center">${first}*${last}</td>
 						<td>${vo.content}</td>
 						<td align="center">${vo.regidate}</td>
 					</tr>

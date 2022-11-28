@@ -71,7 +71,7 @@
 				</tr>
 				<tr>
 					<th>작성자</th>
-					<td><input name="name" value="${vo.name}"></td>
+					<td><input name="name" value="${member.name}" readonly="readonly"></td>
 					<th>지역</th>
 					<td align="center">
 						<select name="region" style="cursor:pointer">

@@ -62,7 +62,7 @@
 				</tr>
 				<tr>
 					<td colspan="6" align="right">
-						<input type="button" value="장기처리 게시판 목록으로" style="cursor:pointer" onclick="location.href='missing_long_term_list.do?page=${param.page}'">
+						<input type="button" value="종결 게시판 목록으로" style="cursor:pointer" onclick="location.href='missing_find_list.do?page=${param.page}'">
 					</td>
 				</tr>
 			</table>

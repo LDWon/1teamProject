@@ -18,7 +18,7 @@
 	</head>
 	<body>
 	<jsp:include page="../main/top.jsp" flush="false" />
-		<h1 align="center">장기처리 게시판</h1>
+		<h1 align="center">종결 게시판</h1>
 		<table border="1" align="center"  width ="800"; height="400";>
 			<tr>
 				<th width="50">번호</th>
@@ -32,7 +32,7 @@
 				<tr>
 					<td align="center">${vo.idx}</td>
 					<td>
-					<a href="missing_long_term_view.do?idx=${vo.idx}&page=${param.page}">
+					<a href="missing_find_view.do?idx=${vo.idx}&page=${param.page}">
 						<font color="black">${vo.subject}</font>
 					</a>
 					</td>
