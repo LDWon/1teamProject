@@ -69,6 +69,10 @@
 			function reply(f) {
 				
 				var content = f.content.value;
+				if (${member == null}) {
+					alert("로그인 후 이용 가능합니다.");
+					return;
+				}
 				if (!confirm("등록하시겠습니까?")){
 					return;
 				}
@@ -77,10 +81,44 @@
 					return;
 				}
 				
-				f.method="get";
 				f.action="missing_reply.do";
+				f.method="get";
 				f.submit();
+				
 			}
+			
+			
+			/* ---------------------------종결게시판으로 등록하기-------------------- */
+			
+			function missing_find(f) {
+				if ('${member.id}'!='${vo.id}') {
+					alert('이 글의 작성자만 이용할 수 있습니다.');
+					return;
+				}
+				if (!confirm("종결 게시판으로 이동합니다.\r\n계속하시겠습니까?")){
+					return;
+				}
+				var url = "missing_find.do";
+				var param = "idx=${vo.idx}";
+				
+				sendRequest(url, param, missing_findCheck, "post");
+			}
+			
+			function missing_findCheck() {
+				if(xhr.readyState == 4 && xhr.status == 200) {
+					var data = xhr.responseText;
+					//"[{'param':'yes'}]"
+					var json = eval(data);
+					
+					if (json[0].param == 'yes'){
+						alert('해결 완료!\r\n목록으로 돌아갑니다.');
+						location.href="missing_list.do?page=${param.page}";
+					} else {
+						alert('삭제 실패');
+					}
+				}
+			}
+			
 		</script>
 	</head>
 	<body>
@@ -89,6 +127,8 @@
 			<table border="1" align="center" width="800" height="400">
 				<input type="hidden" name="idx" value="${vo.idx}">
 				<input type="hidden" name="page" value="${param.page}">
+				<input type="hidden" name="name" value="${member.name}">
+				<input type="hidden" name="id" value="${member.id}">
 				<tr>
 					<td colspan="6" align="center" height="50" id="subject"><b>${vo.subject}</b></td>
 				</tr>
@@ -127,7 +167,7 @@
 				</tr>
 				<tr>
 					<td colspan="6" align="right">
-						
+						<input type="button" value="해결완료" style="cursor:pointer" onclick="missing_find();">
 						<input type="button" value="댓글보기" style="cursor:pointer" onclick="location.href='missing_reply_list.do?idx=${vo.idx}&page=${param.page}&subject=${vo.subject}'">
 						<input type="button" value="삭제하기" style="cursor:pointer" onclick="missing_del();">
 						<input type="button" value="수정하기" style="cursor:pointer" onclick="missing_mod(this.form);">

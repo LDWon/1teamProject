@@ -1,0 +1,53 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<link rel="stylesheet" type="text/css" href="resources/css/footer.css"">
+		<style>
+			a{text-decoration: none;}
+			table {border-collapse: collapse;}
+			th {background-color: #6799FF;}
+			td {background-color: #D9E5FF}
+			#pageMenu {background-color: #6799FF;}
+		</style>
+	</head>
+	<body>
+	<jsp:include page="../main/top.jsp" flush="false" />
+		<h1 align="center">장기처리 게시판</h1>
+		<table border="1" align="center"  width ="800"; height="400";>
+			<tr>
+				<th width="50">번호</th>
+				<th width="300">제목</th>
+				<th width="100">작성자</th>
+				<th width="50">지역</th>
+				<th width="100">등록일</th>
+				<th width="50">조회수</th>
+			</tr>
+			<c:forEach var="vo" items="${list}">
+				<tr>
+					<td align="center">${vo.idx}</td>
+					<td>
+					<a href="missing_long_term_view.do?idx=${vo.idx}&page=${param.page}">
+						<font color="black">${vo.subject}</font>
+					</a>
+					</td>
+					<td align="center">${vo.name}</td>
+					<td align="center">${vo.region}</td>
+					<td align="center">${fn:split(vo.regidate,' ')[0]}</td>
+					<td align="center">${vo.readhit}</td>
+				</tr>
+			</c:forEach>
+			<tr>
+				<td colspan="6" align="center" id="pageMenu"> 
+					${pageMenu}
+				</td>
+			</tr>
+		</table>
+		<jsp:include page="../main/footer.jsp" flush="false" />
+	</body>
+</html>

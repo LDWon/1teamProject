@@ -32,7 +32,7 @@
 		               <li><a class="menuLink" onclick = "location.href='about.do'">About us</a></li>
 		               <li><a class="menuLink" onclick ="location.href='missing_list.do'">실종자 게시판</a></li>
 		               <li><a class="menuLink" href="#">종결 게시판</a></li>
-		               <li><a class="menuLink" href="#">장기처리 게시판</a></li>
+		               <li><a class="menuLink" onclick ="location.href='missing_long_term_list.do'">장기처리 게시판</a></li>
 		               <li><a class="menuLink" onclick ="location.href='shopping_main'">쇼핑몰</a></li>
 		           </ul>
 		        </nav>

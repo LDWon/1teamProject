@@ -86,8 +86,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 댓글 작성하기 -->
 	<insert id="missing_reply" parameterType="missing">
 		insert into missing values(seq_missing_idx.nextval,
-									'없음',
-									'없음',
+									#{name},
+									#{id},
 									'없음',
 									#{content},
 									'없음',
@@ -117,6 +117,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="missing_list_region" resultType="missing" parameterType="vo.MissingRegionVO">
 		select * from (SELECT RANK() OVER(ORDER BY idx DESC) NO, m.* FROM missing m where step = 0 and region = #{region} and months_between(sysdate, regidate) &lt; 1) where NO BETWEEN #{start} AND #{end}
 		
+	</select>
+	
+	
+	
+	
+	<!-- 종결게시판으로 등록하기 (step을 -1로) -->
+	<update id="missing_update_find" parameterType="int">
+		update missing set step = -1 where idx = #{idx}
+	</update>
+	
+	
+	<!-- ==============장기처리관련================= -->
+	
+	<!-- step이 0(메인 글)을 장기처리글조회하기 -->
+	<select id="missing_long_term_list" resultType="missing" parameterType="java.util.HashMap">
+		select * from 
+		(SELECT RANK() OVER(ORDER BY idx DESC) NO, m.* FROM missing m where step = 0 and months_between(sysdate, regidate) >= 1) 
+		where NO BETWEEN #{start} AND #{end}
+	</select>
+	
+	
+	<!-- 장기처리글 수 조회 -->
+	<select id="missing_long_term_count" resultType="int">
+		select count(*) from missing where step = 0 and months_between(sysdate, regidate) >= 1
 	</select>
 	
 </mapper>

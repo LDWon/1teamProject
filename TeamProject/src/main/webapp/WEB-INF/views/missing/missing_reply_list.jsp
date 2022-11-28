@@ -20,14 +20,14 @@
 		<h1 align="center">'${param.subject}'의 댓글</h1>
 		<table border="1" align="center" width="800">
 				<tr>
-					<th width="100">익명(ip)</th>
+					<th width="100">작성자</th>
 					<th width="520">내용</th>
 					<th>작성날짜</th>
 				</tr>
 				<c:forEach var="vo" items="${list}">
 					<c:if test="${param.idx eq vo.ref}">
 					<tr>
-						<td align="center">${vo.ip}</td>
+						<td align="center">${vo.name}</td>
 						<td>${vo.content}</td>
 						<td align="center">${vo.regidate}</td>
 					</tr>

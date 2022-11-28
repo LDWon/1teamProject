@@ -238,7 +238,7 @@ public class MissingController {
 	// 댓글달기
 
 	@RequestMapping("missing_reply.do")
-	public String missing_reply(Model model, int idx, String content, int page) {
+	public String missing_reply(Model model, int idx, String content, String name, String id, int page) {
 
 		// 기준글 idx를 사용해서 게시물의 정보 얻기
 		MissingVO basevo = missing_dao.selectOne(idx);
@@ -251,6 +251,8 @@ public class MissingController {
 		MissingVO vo = new MissingVO();
 		vo.setContent(content);
 		vo.setIp(ip);
+		vo.setName(name);
+		vo.setId(id);
 		// 댓글이 들어갈 위치 설정
 		vo.setRef(basevo.getRef());
 		vo.setStep(basevo.getStep() + 1);
@@ -330,10 +332,88 @@ public class MissingController {
 
 	}
 
+	
+	
+	@RequestMapping("/missing_find.do")
+	@ResponseBody
+	public String missing_find(int idx) {
+		int res = missing_dao.update_find(idx);
+
+		if (res == 1) {
+			return "[{'param':'yes'}]";
+		} else {
+			return "[{'param':'no'}]";
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// About us 화면이동
 	@RequestMapping("/about.do")
 	public String about() {
 		return Common.VIEW_PATH_MAIN + "aboutus.jsp";
 	}
 
+	
+	
+	//-------------------------------------------장기처리 게시판 관련--------------------------------------------------------
+	
+	//장기처리글 페이지 보기 (step이 0임)
+	@RequestMapping("/missing_long_term_list.do")
+	public String missing_long_term_list(Model model, String page) {
+
+		int nowPage = 1;
+
+		if (page != null && !page.isEmpty()) {
+			nowPage = Integer.parseInt(page);
+		}
+
+		// 한 페이지에 표시가 될 게시물의 시작과 끝 번호 계산
+		// page가 1이면 1~10까지 계산되어야 함
+		// page가 2이면 11~20까지 계산되어야 함
+		int start = (nowPage - 1) * Common.Missing_Board.BLOCKLIST + 1;
+		int end = start + Common.Missing_Board.BLOCKLIST - 1;
+
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("start", start);
+		map.put("end", end);
+
+		List<MissingVO> list = missing_dao.selectList_long_term(map);
+
+		// 전체 게시물 수 조회
+		int rowTotal = missing_dao.getRowTotal_long_term();
+
+		String pageMenu = Paging.getPaging("missing_list.do", nowPage, // 현재 페이지 번호
+				rowTotal, // 전체 게시물 수
+				Common.Missing_Board.BLOCKLIST, // 한 페이지에 표기할 게시물 수
+				Common.Missing_Board.BLOCKPAGE); // 페이지 메뉴 수
+
+		// 조회수를 위해 저장해뒀던 show라는 정보를 세션에서 제거
+		request.getSession().removeAttribute("show");
+
+		model.addAttribute("list", list);
+		model.addAttribute("pageMenu", pageMenu);
+
+		return Common.VIEW_PATH_MISSING + "missing_long_term_list.jsp?page=" + nowPage;
+		// ?를 포함한 문구가 매핑다음에 따라온다.
+	}
+	
+	// 장기처리글 상세보기
+	@RequestMapping("/missing_long_term_view.do")
+	public String missing_long_term_view(Model model, int idx) {
+
+		MissingVO vo = missing_dao.selectOne(idx);
+		model.addAttribute("vo", vo);
+
+		return Common.VIEW_PATH_MISSING + "missing_long_term_view.jsp";
+	}
+
+
+	
 }

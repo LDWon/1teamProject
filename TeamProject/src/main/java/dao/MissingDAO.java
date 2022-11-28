@@ -91,6 +91,12 @@ public class MissingDAO {
 		int res = sqlSession.insert("m.missing_reply", vo); 
 		return res;
 	}
+	
+	//종결게시판 등록하기
+	public int update_find(int idx) {
+		int res = sqlSession.update("m.missing_update_find", idx);
+		return res;
+	}
 	 
 	
 	//댓글 창 보여주기
@@ -107,5 +113,22 @@ public class MissingDAO {
 		list = sqlSession.selectList("m.missing_list_region",mrvo);
 		return list;
 	}
+	
+	//------------------------------장기처리 관련-------------------------------------
+	//장기처리글 불러오기
+		public List<MissingVO> selectList_long_term(HashMap<String, Integer> map) {
+			List<MissingVO> list = null;
+			list = sqlSession.selectList("m.missing_long_term_list", map);
+			return list;
+		}
+	
+	//장기처리 메인글 수 조회
+	public int getRowTotal_long_term() {
+		int count = sqlSession.selectOne("m.missing_long_term_count");
+		return count;
+	}
+	
+	
+	
 	
 }
