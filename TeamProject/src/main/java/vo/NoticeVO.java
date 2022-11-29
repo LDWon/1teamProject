@@ -4,7 +4,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class NoticeVO {
 	
-	private String name,subject,content,pwd,regidate,filename;
+	private String name,subject,content,regidate,filename;
 	private int idx;
 	private MultipartFile photo;
 	
@@ -33,12 +33,6 @@ public class NoticeVO {
 	}
 	public void setSubject(String subject) {
 		this.subject = subject;
-	}
-	public String getPwd() {
-		return pwd;
-	}
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
 	}
 	public String getRegidate() {
 		return regidate;

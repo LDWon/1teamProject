@@ -8,7 +8,6 @@ create table notice(
 	name VARCHAR2(100) NOT NULL,
 	subject varchar2(100), --글의 제목
 	content CLOB not null,
-	pwd VARCHAR2(100) NOT NULL,
 	regidate DATE,
 	filename varchar2(100)
 	);
