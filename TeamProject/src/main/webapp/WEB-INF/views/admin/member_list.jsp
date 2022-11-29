@@ -17,6 +17,10 @@
 	width: 1080px;
 	margin: auto;
 }
+h1{margin-top: 50px;}
+td{
+	text-align: center;
+}
 </style>
 </head>
 <body>
@@ -30,8 +34,9 @@
 					<th>생년월일</th>
 					<th>이메일</th>
 					<th>전화번호</th>
+					<th>우편번호</th>
+					<th>상세주소</th>
 					<th>이메일 인증여부</th>
-					<th>우편주소</th>
 				</tr>
 				<c:forEach var="vo" items="${member_list }">
 					<c:if test="${vo.adminCk==0 }">
@@ -41,13 +46,14 @@
 							<td>${vo.birth }</td>
 							<td>${vo.email }</td>
 							<td>${vo.tel }</td>
+							<td>${vo.memberAddr1 }</td>
+							<td>${vo.memberAddr2 } ${vo.memberAddr3}</td>
 							<c:if test="${vo.mail_auth==1 }">
 								<td>O</td>
 							</c:if>
 							<c:if test="${vo.mail_auth==0 }">
 								<td>X</td>
 							</c:if>
-							<td>${vo.memberAddr1 }</td>
 						</tr>
 					</c:if>
 				</c:forEach>
