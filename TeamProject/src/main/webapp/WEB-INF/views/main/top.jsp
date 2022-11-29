@@ -31,7 +31,7 @@
 			<div class="top_menu">
 
 				<ul>
-					<li><a onclick="location.href='about.do'">About us</a></li>
+					<li><a onclick="location.href='main.do'">HOME</a></li>
 					<li><a onclick="location.href='notice_list.do'">공지사항</a></li>
 					<li><a onclick="location.href='missing_list.do'">실종자 게시판</a></li>
 					<li><a class="menuLink"
