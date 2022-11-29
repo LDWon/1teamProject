@@ -54,6 +54,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="get_member_information" parameterType="m_user" resultType="m_user">
 		select * from m_user where id=#{id}
 	</select>
+	
+	<!-- 회원정보 불러오기 -->
+	<select id="get_member_list" resultType="m_user">
+		select * from m_user
+	</select>
 </mapper>
 
 
