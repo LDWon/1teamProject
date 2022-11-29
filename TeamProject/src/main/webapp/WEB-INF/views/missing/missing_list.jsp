@@ -32,7 +32,6 @@
 								<option value="전체">전체</option>
 								<option value="서울">서울</option>
 								<option value="경기">경기</option>
-								<option value="부산">부산</option>
 								<option value="대전">대전</option>
 								<option value="대구">대구</option>
 								<option value="울산">울산</option>

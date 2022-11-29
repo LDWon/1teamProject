@@ -33,7 +33,6 @@
 		</script>
 	</head>
 	<body>
-	<jsp:include page="../main/top.jsp" flush="false" />
 		<div class="wrapper">
 			<div class="wrap">
 				<h1 align="center">공지사항 등록</h1>
@@ -46,7 +45,7 @@
 						</tr>
 						<tr>
 							<th>작성자</th>
-							<td><input name="name" value="${member.name}" readonly="readonly"></td>
+							<td><input name="name" style="border: 0;background-color: #e3f2fd" value="관리자(id : ${member.id})" readonly="readonly"></td>
 						</tr>
 						<tr>
 							<th>내용</th>
@@ -60,7 +59,7 @@
 		 				</tr>
 						<tr>
 							<td colspan="4" align="right" id="menu">
-								<input type="button" value="뒤로가기" style="cursor:pointer" onclick="location.href='notice_list.do?page=${param.page}'">
+								<input type="button" value="목록으로" style="cursor:pointer" onclick="location.href='../notice_list.do?page=${param.page}'">
 								<input type="button" value="등록하기" style="cursor:pointer" onclick="notice_insert(this.form);">
 							</td>
 						</tr>
@@ -68,6 +67,5 @@
 				</form>
 			</div>
 		</div>
-		<jsp:include page="../main/footer.jsp" flush="false" />
 	</body>
 </html>
