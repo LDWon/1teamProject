@@ -23,7 +23,7 @@
 						<th width="100">등록일</th>
 					</tr>
 	
-					<c:forEach var="notice" items="${n_list}">
+					<c:forEach var="notice" items="${list}">
 						<!-- var = notice로 선언과  noticeDAO에  n_list를 불러온다 -->
 						<tr>
 							<td align="center">${notice.idx}</td>

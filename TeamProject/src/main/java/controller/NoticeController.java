@@ -31,7 +31,7 @@ public class NoticeController {
 	ServletContext application;
 	
 	//공지사항 메인글 구현   ( 페이징 처리와 페이지메뉴 처리 기능 구현 ) util 폴더에 paging 파일에 구현되어있는 파일을 참조 
-	@RequestMapping("notice_list.do")
+	@RequestMapping("/notice_list.do")
 	public String notice_list(Model model,String page) {
 		
 		int nowpage = 1;   
@@ -50,7 +50,7 @@ public class NoticeController {
 		map.put("end", end);  //put =  end키값에 end 값 
 		
 		
-		List<NoticeVO> list = notice_dao.noticeList(map);// list 에  noticedao의 noticeList로 함수지정된 메서드 호출 파마리터로 (map을 같이포함해서 넣어준다 )
+		List<NoticeVO> list = notice_dao.selectList(map);// list 에  noticedao의 noticeList로 함수지정된 메서드 호출 파마리터로 (map을 같이포함해서 넣어준다 )
 		
 		// 전체 게시물 수 조회
 		int rowTotal = notice_dao.getRowTotal();//NoticeDAO에  게시글 조회 함수명 지정되어있음 getRowTotal 
@@ -66,7 +66,7 @@ public class NoticeController {
 		model.addAttribute("list", list);
 		model.addAttribute("pageMenu", pageMenu);
 		
-		return Common.VIEW_PATH_NOTICE+"notice_list.jsp?page="+nowpage;
+		return Common.VIEW_PATH_NOTICE + "notice_list.jsp?page="+nowpage;
 	}
 	
 	
