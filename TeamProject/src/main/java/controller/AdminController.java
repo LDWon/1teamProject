@@ -48,7 +48,21 @@ public class AdminController {
 		model.addAttribute("member_list", member_list);
 		return Common.VIEW_PATH_ADMIN + "member_list.jsp";
 	}
-
+	//회원 목록에서 검색하기
+	@RequestMapping("/member_list_searching")
+	public String member_list_searching(Model model, String search_type,String search_word) {
+		List<M_userVO> list = null;
+		if (search_type.equals("전체")) {
+			list = m_user_dao.search_member_list_all(search_word);
+		}else if (search_type.equals("아이디")) {
+			list = m_user_dao.search_member_list_id(search_word);
+		}else if (search_type.equals("이름")) {
+			list = m_user_dao.search_member_list_name(search_word);
+		}
+		model.addAttribute("member_list",list);
+		return Common.VIEW_PATH_ADMIN + "member_list.jsp";
+	}
+	
 	// 글 추가 페이지로 이동
 	@RequestMapping("/notice_insert_form.do")
 	public String insert_form() {
