@@ -33,11 +33,7 @@
 				<!-- 네비영역 -->
 				<div class="admin_navi_wrap">
 					<ul>
-						<li><a class="admin_list_01">상품 등록</a></li>
-						<li><a class="admin_list_02">상품 목록</a></li>
-						<lI><a class="admin_list_03">작가 등록</a></lI>
-						<lI><a class="admin_list_04">작가 관리</a></lI>
-						<lI><a class="admin_list_05">회원 관리</a></lI>
+						<li><a onclick="location.href='member_list_search'" class="admin_list_01">회원 목록 조회</a></li>
 					</ul>
 					<!-- 
                     <div class="admin_list_01">

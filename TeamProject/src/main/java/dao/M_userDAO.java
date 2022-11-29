@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -62,5 +64,12 @@ public class M_userDAO {
 	// 로그인 성공시 회원정보 받아오기
 	public M_userVO get_member_information(M_userVO vo) {
 		return session.selectOne("u.get_member_information", vo);
+	}
+
+	// 회원정보 불러오기
+	public List<M_userVO> get_member_list() {
+		List<M_userVO> list = null;
+		list = session.selectList("u.get_member_list");
+		return list;
 	}
 }
