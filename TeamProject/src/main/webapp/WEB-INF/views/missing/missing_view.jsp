@@ -123,7 +123,7 @@
 			<div class="wrap">
 				<h1 align="center">실종자 정보</h1>
 				<form> <!-- 수정할 때 idx를 가져오기 위한 form태그 -->
-					<table border="1" align="center" width="800" height="400">
+					<table border="1" align="center">
 						<input type="hidden" name="idx" value="${vo.idx}">
 						<input type="hidden" name="page" value="${param.page}">
 						<input type="hidden" name="name" value="${member.name}">
@@ -159,11 +159,12 @@
 							</c:if>
 						</tr>
 						<tr>
-							<td colspan="6"><pre>${vo.content}</pre>
+							<td colspan="6"><div id="content"><pre>${vo.content}</pre>
 							<c:if test="${vo.filename ne 'no_file'}">
 								<img src="${pageContext.request.contextPath}/resources/upload/${vo.filename}"
 								    width="200">
 							</c:if>
+							</div>
 							</td>
 						</tr>
 						<tr>
