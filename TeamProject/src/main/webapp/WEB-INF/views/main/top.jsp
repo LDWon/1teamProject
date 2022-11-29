@@ -13,6 +13,10 @@
 	<div class="wrapper">
 		<div class="wrap">
 			<div class="top_gnb_area">
+				<div class="main_logo">
+					<!-- <h1>FIND</h1> -->
+					<img src="resources/img/logo_find.png">
+				</div>
 				<ul class="list">
 					<c:if test="${member==null }">
 						<li><a href="/missing/loginForm">로그인</a></li>
@@ -37,7 +41,7 @@
 					<li><a class="menuLink"
 						onclick="location.href='missing_find_list.do'">종결 게시판</a></li>
 					<li><a class="menuLink"
-						onclick="location.href='missing_long_term_list.do'">장기처리 게시판</a></li>
+						onclick="location.href='missing_long_term_list.do'">장기미처리 게시판</a></li>
 				</ul>
 
 			</div>

@@ -20,7 +20,6 @@
 				<ul class="list">
 					<li><a href="/missing/main.do">메인 페이지</a></li>
 					<li><a href="/missing/logout">로그아웃</a></li>
-					<li>고객센터</li>
 				</ul>
 			</div>
 			<!-- top_subject_area -->
@@ -34,6 +33,7 @@
 				<div class="admin_navi_wrap">
 					<ul>
 						<li><a onclick="location.href='member_list_search'" class="admin_list_01">회원 목록 조회</a></li>
+						<li><a onclick="location.href='notice_insert_form.do'" class="admin_list_02">공지사항 등록</a></li>
 					</ul>
 					<!-- 
                     <div class="admin_list_01">

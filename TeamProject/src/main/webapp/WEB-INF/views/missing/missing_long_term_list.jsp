@@ -14,7 +14,7 @@
 	<jsp:include page="../main/top.jsp" flush="false" />
 		<div class="wrapper">
 			<div class="wrap">
-				<h1 align="center">장기처리 게시판</h1>
+				<h1 align="center">장기미처리 게시판</h1>
 				<table border="1" align="center">
 					<tr>
 						<th width="50">번호</th>
