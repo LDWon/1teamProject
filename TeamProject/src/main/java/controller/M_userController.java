@@ -38,6 +38,14 @@ public class M_userController {
 		return Common.VIEW_PATH_M_USER + "member_agreement_form.jsp";
 	}
 
+	// 회원가입 전 동의 여부 확인체크
+	@RequestMapping("/agreement_confirm.do")
+	public String agreement_confirm() {
+		HttpSession session = request.getSession();
+		session.setAttribute("agreement", true);
+		return "redirect:join_form.do";
+	}
+
 	// 회원가입창
 	@RequestMapping("/join_form.do")
 	public String join_form() {
@@ -151,4 +159,5 @@ public class M_userController {
 		HttpSession session = request.getSession();
 		session.invalidate();
 	}
+
 }
