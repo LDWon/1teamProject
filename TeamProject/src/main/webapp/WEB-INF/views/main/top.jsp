@@ -23,11 +23,8 @@
 						<c:if test="${member.adminCk == 1 }">
 							<li><a href="/missing/admin/main">관리자 페이지</a></li>
 						</c:if>
-						<li><a class="logout_button">로그아웃</a></li>
-						<li>마이룸</li>
-						<li>장바구니</li>
+						<li><a onclick="location.href='logout'" class="logout_button">로그아웃</a></li>
 					</c:if>
-					<li>고객센터</li>
 				</ul>
 			</div>
 
