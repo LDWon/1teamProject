@@ -51,11 +51,12 @@
 							</c:if>
 						</tr>
 						<tr>
-							<td colspan="6"><pre>${vo.content}</pre>
+							<td colspan="6"><div id="content"><pre>${vo.content}</pre>
 							<c:if test="${vo.filename ne 'no_file'}">
 								<img src="${pageContext.request.contextPath}/resources/upload/${vo.filename}"
 								    width="200">
 							</c:if>
+							</div>
 							</td>
 						</tr>
 						<tr>
