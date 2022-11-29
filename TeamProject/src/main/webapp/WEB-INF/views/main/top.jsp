@@ -23,18 +23,15 @@
 						<c:if test="${member.adminCk == 1 }">
 							<li><a href="/missing/admin/main">관리자 페이지</a></li>
 						</c:if>
-						<li><a class="logout_button">로그아웃</a></li>
-						<li>마이룸</li>
-						<li>장바구니</li>
+						<li><a onclick="location.href='logout'" class="logout_button">로그아웃</a></li>
 					</c:if>
-					<li>고객센터</li>
 				</ul>
 			</div>
 
 			<div class="top_menu">
 
 				<ul>
-					<li><a onclick="location.href='about.do'">About us</a></li>
+					<li><a onclick="location.href='main.do'">HOME</a></li>
 					<li><a onclick="location.href='notice_list.do'">공지사항</a></li>
 					<li><a onclick="location.href='missing_list.do'">실종자 게시판</a></li>
 					<li><a class="menuLink"
