@@ -1,30 +1,26 @@
 @charset "UTF-8";
 
-a {
-	text-decoration: none;
-}
 h1{
 	margin-top: 10px;
 	margin-bottom: 20px;
 }
-.region_container{
-	margin-bottom: 20px;
-}
+
 table {
 	border-collapse: collapse;
 	width: 100%;
+	margin-top: 20px;
 }
-table tr{
-	height: 42px;
-}
+
 th {
 	background-color: #bbdefb;
+	height: 21px;
 }
 
 td {
 	background-color: #e3f2fd;
 }
 
-#pageMenu {
+#menu {
 	background-color: #bbdefb;
+	height: 30px;
 }
