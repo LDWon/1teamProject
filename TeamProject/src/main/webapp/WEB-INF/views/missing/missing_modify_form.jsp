@@ -65,11 +65,11 @@
 						<input type="hidden" name="page" value="${param.page}">
 							<tr>
 								<th>제목</th>
-								<td colspan="3"><input name="subject" value="${vo.subject}"></td>
+								<td colspan="3"><input name="subject" value="${vo.subject}" style="border: 0;background-color: #e3f2fd; width: 75%; height: 100%;" placeholder="제목을 입력해주세요."></td>
 							</tr>
 							<tr>
 								<th>작성자</th>
-								<td><input name="name" value="${member.name}" readonly="readonly"></td>
+								<td><input name="name" style="border: 0;background-color: #e3f2fd" value="${member.name}" readonly="readonly"></td>
 								<th>지역</th>
 								<td align="center">
 									<select name="region" style="cursor:pointer">
@@ -95,11 +95,13 @@
 							<tr>
 								<th>내용</th>
 								<td colspan="3">
-									<pre><textarea name="content" rows="30" cols="140" style="resize:none;">${vo.content}</textarea></pre>
+								<div id="content">
+									<pre><textarea name="content" rows="25" cols="136" style="resize:none; border: 0; background-color: #e3f2fd; padding: 10px;">${vo.content}</textarea></pre>
 									<c:if test="${vo.filename ne 'no_file'}">
 									<img src="${pageContext.request.contextPath}/resources/upload/${vo.filename}"
 									    width="200">
 									</c:if>
+								</div>
 								</td>
 							</tr>
 							<tr>
