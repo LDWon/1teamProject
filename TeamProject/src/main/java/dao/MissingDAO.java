@@ -81,6 +81,11 @@ public class MissingDAO {
 		int res = sqlSession.update("m.missing_update_find", idx);
 		return res;
 	}
+	//종결게시판 등록일 바꾸기
+	public int update_find_regidate(int idx) {
+		int res = sqlSession.update("m.missing_update_find_regidate", idx);
+		return res;
+	}
 
 	// 댓글 창 보여주기
 	public List<MissingVO> selectList_reply(MissingVO vo) {

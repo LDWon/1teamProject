@@ -127,6 +127,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update missing set step = -1 where idx = #{idx}
 	</update>
 	
+	<!-- 종결게시판 등록일 바꾸기 (regidate = sysdate로) -->
+	<update id="missing_update_find_regidate" parameterType="int">
+		update missing set regidate = sysdate where idx = #{idx}
+	</update>
+	
 	
 	<!-- ==============장기처리관련================= -->
 	
@@ -148,7 +153,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- step이 (-1)인 해결완료 글 조회하기 -->
 	<select id="missing_find_list" resultType="missing" parameterType="java.util.HashMap">
 		select * from 
-		(SELECT RANK() OVER(ORDER BY idx DESC) NO, m.* FROM missing m where step = -1) 
+		(SELECT RANK() OVER(ORDER BY regidate DESC) NO, m.* FROM missing m where step = -1) 
 		where NO BETWEEN #{start} AND #{end}
 	</select>
 	
