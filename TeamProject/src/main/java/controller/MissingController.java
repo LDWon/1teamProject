@@ -377,6 +377,7 @@ public class MissingController {
 
 		// 전체 게시물 수 조회
 		int rowTotal = missing_dao.getRowTotal_long_term();
+		
 
 		String pageMenu = Paging.getPaging("missing_long_term_list.do", nowPage, // 현재 페이지 번호
 				rowTotal, // 전체 게시물 수
