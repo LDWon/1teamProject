@@ -108,7 +108,7 @@
 						</tr>
 						<tr>
 							<th>파일 첨부</th>
-							<td><input type="file" name="photo" style="cursor:pointer"></td>
+							<td><input type="file" name="photo" style="cursor:pointer">※&nbsp;첨부파일은 <b>1</b>개만 등록 가능합니다.&nbsp;※</td>
 		 				</tr>
 						<tr>
 							<td colspan="4" align="right" id="menu">
