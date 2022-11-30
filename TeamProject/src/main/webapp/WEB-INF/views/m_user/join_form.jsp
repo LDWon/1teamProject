@@ -73,6 +73,7 @@
 			f.email.focus();
 		}
 
+		
 		//비밀번호 일치 확인
 		if (pwd != pwdChk) {
 			alert("비밀번호가 일치하지 않습니다.");
@@ -170,6 +171,19 @@
 		var form = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 		return form.test(email);
 	}
+	/* 비밀번호 입력 후 일치 여부 확인 */
+	function check_pwd(f) {
+		var pwd = f.pwd.value;
+		var pwdChk = f.pwdChk.value;
+		
+		if (pwd==pwdChk) {
+			document.getElementById('pwd_ok').style.display = 'block';
+			document.getElementById('pwd_no').style.display = 'none';
+		}else{
+			document.getElementById('pwd_ok').style.display = 'none';
+			document.getElementById('pwd_no').style.display = 'block';
+		}
+	}
 </script>
 </head>
 <body>
@@ -200,7 +214,8 @@
 				</div>
 				<div>
 					<p>비밀번호 재확인</p>
-					<input name="pwdChk" type="password" placeholder="비밀번호를 다시 입력해주세요">
+					<input onblur="check_pwd(this.form)" name="pwdChk" type="password" placeholder="비밀번호를 다시 입력해주세요">
+					<span id="pwd_ok">비밀번호가 일치합니다.</span> <span id="pwd_no">비밀번호가 일치하지 않습니다</span>
 				</div>
 				<!-- 이름 입력 -->
 				<div>
