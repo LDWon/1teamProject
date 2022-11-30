@@ -108,7 +108,7 @@
 					
 					if (json[0].param == 'yes'){
 						alert('해결 완료!\r\n종결 게시판 목록으로 이동합니다.');
-						location.href="missing_find_list.do?page=${param.page}";
+						location.href="missing_find_list.do";
 					} else {
 						alert('실패');
 					}

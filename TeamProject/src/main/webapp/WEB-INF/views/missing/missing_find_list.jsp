@@ -21,7 +21,7 @@
 						<th width="300">제목</th>
 						<th width="100">작성자</th>
 						<th width="50">지역</th>
-						<th width="100">등록일</th>
+						<th width="100">종결등록일</th>
 						<th width="50">조회수</th>
 					</tr>
 					<c:forEach var="vo" items="${list}">

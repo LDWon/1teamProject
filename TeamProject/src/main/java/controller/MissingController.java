@@ -337,8 +337,8 @@ public class MissingController {
 	@ResponseBody
 	public String missing_find(int idx) {
 		int res = missing_dao.update_find(idx);
-
-		if (res == 1) {
+		int res2 = missing_dao.update_find_regidate(idx);
+		if (res == 1 && res2 == 1) {
 			return "[{'param':'yes'}]";
 		} else {
 			return "[{'param':'no'}]";
@@ -450,7 +450,7 @@ public class MissingController {
 		model.addAttribute("list", list);
 		model.addAttribute("pageMenu", pageMenu);
 
-		return Common.VIEW_PATH_MISSING + "missing_find_list.jsp?page=" + nowPage;
+		return Common.VIEW_PATH_MISSING + "missing_find_list.jsp";
 		// ?를 포함한 문구가 매핑다음에 따라온다.
 	}
 
