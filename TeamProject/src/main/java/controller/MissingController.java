@@ -439,7 +439,7 @@ public class MissingController {
 		// 전체 게시물 수 조회
 		int rowTotal = missing_dao.getRowTotal_find();
 
-		String pageMenu = Paging.getPaging("missing_list.do", nowPage, // 현재 페이지 번호
+		String pageMenu = Paging.getPaging("missing_find_list.do", nowPage, // 현재 페이지 번호
 				rowTotal, // 전체 게시물 수
 				Common.Missing_Board.BLOCKLIST, // 한 페이지에 표기할 게시물 수
 				Common.Missing_Board.BLOCKPAGE); // 페이지 메뉴 수
@@ -450,7 +450,7 @@ public class MissingController {
 		model.addAttribute("list", list);
 		model.addAttribute("pageMenu", pageMenu);
 
-		return Common.VIEW_PATH_MISSING + "missing_find_list.jsp";
+		return Common.VIEW_PATH_MISSING + "missing_find_list.jsp?page=" + nowPage;
 		// ?를 포함한 문구가 매핑다음에 따라온다.
 	}
 
