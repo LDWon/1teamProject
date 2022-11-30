@@ -48,6 +48,15 @@ div input {
 	color: #F55939;
 	display: none;
 }
+#pwd_ok {
+	color: #008000;
+	display: none;
+}
+
+#pwd_no {
+	color: #F55939;
+	display: none;
+}
 .checkId {
 	margin-left: 10px;
 	width: 95px;

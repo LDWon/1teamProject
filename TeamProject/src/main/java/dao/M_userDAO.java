@@ -72,4 +72,20 @@ public class M_userDAO {
 		list = session.selectList("u.get_member_list");
 		return list;
 	}
+
+	//관리자 페이지에서 회원 정보 검색하기
+	public List<M_userVO> search_member_list_all(String search_word) {
+		List<M_userVO> list = session.selectList("u.search_member_list_all",search_word);
+		return list;
+	}
+	//관리자 페이지에서 회원 정보 아이디 검색하기
+	public List<M_userVO> search_member_list_id(String search_word){
+		List<M_userVO> list = session.selectList("u.search_member_list_id",search_word);
+		return list;
+	}
+	//관리자 페이지에서 회원 정보 이름 검색하기
+	public List<M_userVO> search_member_list_name(String search_word){
+		List<M_userVO> list = session.selectList("u.search_member_list_name",search_word);
+		return list;
+	}
 }

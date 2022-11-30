@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>main</title>
+<title>Find</title>
 <link rel="stylesheet" type="text/css" href="resources/css/footer.css">
 </head>
 <body>

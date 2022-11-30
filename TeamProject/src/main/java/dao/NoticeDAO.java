@@ -17,26 +17,26 @@ public class NoticeDAO {
 	SqlSession sqlSession;
 	
 	//공지사항 메인글 불러오기 
-	public List<NoticeVO> noticeList(HashMap<String, Integer> map) { //notice (공지사항) 리스트 불러오는 변수명 noticeList 함수 생성 
+	public List<NoticeVO> selectList(HashMap<String, Integer> map) { //notice (공지사항) 리스트 불러오는 변수명 noticeList 함수 생성 
 		List<NoticeVO> n_list = null;    //NoticeVO를 참조하는 List 의 변수명 list를  null값을 넣어주어 초기화 **안넣어도 되는지 확인해야함**
-		n_list = sqlSession.selectList("m.notice_list",map); // notice mapper의 쿼리문과 map객체를 파라미터로 받아 list에 담아준다.
+		n_list = sqlSession.selectList("n.notice_list",map); // notice mapper의 쿼리문과 map객체를 파라미터로 받아 list에 담아준다.
 		return n_list;
 	}
 	
 	//전체 메인글 수 조회
 		public int getRowTotal() {
-			int count = sqlSession.selectOne("m.notice_count"); //notice.xml에  개시글갯수를 가져오는부분 
+			int count = sqlSession.selectOne("n.notice_count"); //notice.xml에  개시글갯수를 가져오는부분 
 			return count;
 		}
 		
 		//idx에 해당하는 메인글 상세조회
 		public NoticeVO selectOne(int idx) {
-			NoticeVO vo = sqlSession.selectOne("m.notice_view", idx);
+			NoticeVO vo = sqlSession.selectOne("n.notice_view", idx);
 			return vo;
 		}
 		//공지사항글 추가
 		public int insert(NoticeVO vo) {
-			int res = sqlSession.insert("m.notice_insert", vo);		
+			int res = sqlSession.insert("n.notice_insert", vo);		
 			return res;
 		}
 	

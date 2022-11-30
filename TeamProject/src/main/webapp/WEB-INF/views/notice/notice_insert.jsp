@@ -31,11 +31,63 @@
 				f.submit();
 			}
 		</script>
-	</head>
+<style type="text/css">
+* {
+	margin: 0;
+	padding: 0;
+}
+/* 홈페이지 기능 네비 */
+.top_gnb_area {
+	width: 100%;
+	height: 50px;
+	background-color: #f0f0f1;
+	position: relative;
+}
+
+.top_gnb_area .list {
+	position: absolute;
+	top: 0px;
+	right: 0;
+}
+
+.top_gnb_area .list li {
+	list-style: none;
+	float: left;
+	padding: 13px 15px 0 10px;
+	font-weight: 900;
+	cursor: pointer;
+}
+/* 관리제 페이지 상단 현페이지 정보 */
+.admin_top_wrap {
+	height: 110px;
+	line-height: 110px;
+	background-color: #5080bd;
+	margin-bottom: 15px;
+}
+
+.admin_top_wrap>span {
+	margin-left: 30px;
+	display: inline-block;
+	color: white;
+	font-size: 50px;
+	font-weight: bolder;
+}
+</style>
+</head>
 	<body>
-	<jsp:include page="../main/top.jsp" flush="false" />
 		<div class="wrapper">
 			<div class="wrap">
+				<!-- gnv_area -->
+				<div class="top_gnb_area">
+					<ul class="list">
+						<li><a href="/missing/main.do">메인 페이지</a></li>
+						<li><a href="/missing/logout">로그아웃</a></li>
+					</ul>
+				</div>
+				<!-- top_subject_area -->
+				<div class="admin_top_wrap">
+					<span>관리자 페이지</span>
+				</div>
 				<h1 align="center">공지사항 등록</h1>
 				<form enctype="multipart/form-data">
 					<table border="1" align="center">
@@ -46,7 +98,7 @@
 						</tr>
 						<tr>
 							<th>작성자</th>
-							<td><input name="name" value="${member.name}" readonly="readonly"></td>
+							<td><input name="name" style="border: 0;background-color: #e3f2fd" value="관리자(id : ${member.id})" readonly="readonly"></td>
 						</tr>
 						<tr>
 							<th>내용</th>
@@ -60,7 +112,7 @@
 		 				</tr>
 						<tr>
 							<td colspan="4" align="right" id="menu">
-								<input type="button" value="뒤로가기" style="cursor:pointer" onclick="location.href='notice_list.do?page=${param.page}'">
+								<input type="button" value="목록으로" style="cursor:pointer" onclick="location.href='../notice_list.do?page=${param.page}'">
 								<input type="button" value="등록하기" style="cursor:pointer" onclick="notice_insert(this.form);">
 							</td>
 						</tr>
@@ -68,6 +120,5 @@
 				</form>
 			</div>
 		</div>
-		<jsp:include page="../main/footer.jsp" flush="false" />
 	</body>
 </html>

@@ -2,12 +2,12 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="m">
+<mapper namespace="n">
 <!-- mapper : DB에 쿼리문을 요청하고 결과를 돌려받는 속성파일 -->
 
 	<!-- step이 0(메인 글)을 전체조회하기 -->
 	<select id="notice_list" resultType="notice" parameterType="java.util.HashMap">
-		select * from (SELECT RANK() OVER(ORDER BY idx) NO, n.* FROM notice n) 
+		select * from (SELECT RANK() OVER(ORDER BY idx desc) NO, n.* FROM notice n) 
 		where NO BETWEEN #{start} AND #{end}
 	</select>
 	
@@ -28,7 +28,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 									#{subject},
 									#{content},
 									sysdate,
-									seq_missing_idx.currval,
 									#{filename}
 									)
 	</insert>

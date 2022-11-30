@@ -18,7 +18,12 @@ a {
 	text-decoration: none;
 }
 
-
+.main_logo {
+	height: 100%;
+}
+.main_logo img{
+	height: 100%;
+}
 
 .top_gnb_area {
 	width: 100%;
@@ -59,7 +64,7 @@ a {
 	/* 세로 정렬을 가운데로 설정(위의 line-height와 같이 설정 필요함) */
 	text-align: center; /* 글씨 정렬을 가운데로 설정 */
 	width: 20%;
-	float:left;
+	float: left;
 	display: inline-block;
 }
 
@@ -74,12 +79,13 @@ a {
 	/* 기본 폰트 적용, 시스템 폰트를 종류별로 순서대로 */
 	cursor: pointer;
 }
+
 .top_menu ul li a:hover {
-	color: #ffff80;  
-	background-color: #4d4d4d; 
+	color: #ffff80;
+	background-color: #4d4d4d;
 	margin: 0;
 	padding: 0;
-} 
+}
 /* #topMenu {  topMenu의 ID를 가진 태그의 스타일 지정
 	height: 30px;  topMenu의 높이를 30px로 설정(제대로 설정 안하면 아래 내용이 깨짐)
 	width: 1500px;
