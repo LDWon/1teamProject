@@ -33,3 +33,7 @@ td {
 #pageMenu {
 	background-color: #bbdefb;
 }
+
+input:focus {
+	outline: none;
+}

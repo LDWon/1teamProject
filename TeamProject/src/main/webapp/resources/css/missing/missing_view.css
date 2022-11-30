@@ -45,3 +45,12 @@ td {
 	max-height:400px; 
 	width:100%
 }
+
+input:focus {
+	outline: none;
+}
+
+#button_reply {
+	width: 80px;
+	margin-top: 8px;
+}
