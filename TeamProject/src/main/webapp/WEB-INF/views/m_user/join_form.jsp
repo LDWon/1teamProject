@@ -18,6 +18,7 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 ﻿
 <script type="text/javascript">
+	var email_check = false;
 	//회원 등록
 	function join(f) {
 		var id = f.id.value;
@@ -30,8 +31,9 @@
 		var memberAddr1 = f.memberAddr1.value;
 		var memberAddr2 = f.memberAddr2.value;
 		var memberAddr3 = f.memberAddr3.value;
-		var warnMsg = $(".mail_input_box_warn"); // 이메일 입력 경고글
-		var email_check = false;
+		/* var warnMsg = $(".mail_input_box_warn"); // 이메일 입력 경고글 */
+		/* var email_check = false; */
+		/* var email_check = f.email_check.value; */
 
 		//유효성검사
 		if (id == "") {
@@ -59,7 +61,8 @@
 			f.tel.focus();
 		} else if (memberAddr1 == "" || memberAddr2 == "") {
 			alert("주소를 입력해주세요.")
-		} else if (mailFormCheck(email)) {
+		} 
+		/* else if (mailFormCheck(email)) {
 			warnMsg.html("올바른 이메일 형식입니다.");
 			warnMsg.css("color", "green");
 			warnMsg.css("display", "inline-block");
@@ -71,8 +74,9 @@
 			warnMsg.css("display", "inline-block");
 			email_check = false;
 			f.email.focus();
-		}
+		} */
 
+		
 		//비밀번호 일치 확인
 		if (pwd != pwdChk) {
 			alert("비밀번호가 일치하지 않습니다.");
@@ -82,6 +86,11 @@
 			alert("회원가입이 완료되었습니다.\n이메일 인증을 진행해주세요!");
 			f.action = "join.do";
 			f.submit();
+		}else if (email_check==false) {
+			alert("올바르지 못한 이메일 형식입니다!")
+			f.email.focus();
+		}else{
+			alert("에러!!")
 		}
 	}
 	//아이디 중복확인
@@ -170,6 +179,38 @@
 		var form = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 		return form.test(email);
 	}
+	/* 비밀번호 입력 후 일치 여부 확인 */
+	function check_pwd(f) {
+		var pwd = f.pwd.value;
+		var pwdChk = f.pwdChk.value;
+		
+		if (pwd==pwdChk) {
+			document.getElementById('pwd_ok').style.display = 'block';
+			document.getElementById('pwd_no').style.display = 'none';
+		}else{
+			document.getElementById('pwd_ok').style.display = 'none';
+			document.getElementById('pwd_no').style.display = 'block';
+		}
+	}
+	/* 이메일 입력 후 형식 올바른지 확인 */
+	function check_email(f) {
+		var email = f.email.value;
+		var warnMsg = $(".mail_input_box_warn"); // 이메일 입력 경고글
+		
+		
+		if (mailFormCheck(email)) {
+			warnMsg.html("올바른 이메일 형식입니다.");
+			warnMsg.css("color", "green");
+			warnMsg.css("display", "inline-block");
+			email_check = true;
+		} else if (!mailFormCheck(email)) {
+			warnMsg.html("올바르지 못한 이메일 형식입니다.");
+			warnMsg.css("color", "red");
+			warnMsg.css("display", "inline-block");
+			email_check = false;
+			f.email.focus();
+		}
+	}
 </script>
 </head>
 <body>
@@ -200,7 +241,8 @@
 				</div>
 				<div>
 					<p>비밀번호 재확인</p>
-					<input name="pwdChk" type="password" placeholder="비밀번호를 다시 입력해주세요">
+					<input onblur="check_pwd(this.form)" name="pwdChk" type="password" placeholder="비밀번호를 다시 입력해주세요">
+					<span id="pwd_ok">비밀번호가 일치합니다.</span> <span id="pwd_no">비밀번호가 일치하지 않습니다</span>
 				</div>
 				<!-- 이름 입력 -->
 				<div>
@@ -215,9 +257,10 @@
 				<!-- 이메일 입력 -->
 				<div>
 					<p>이메일</p>
-					<input name="email" type="text" placeholder="이메일을 입력해주세요">
+					<input onblur="check_email(this.form)" name="email" type="text" placeholder="이메일을 입력해주세요">
 					<!-- 이메일 형식이 올바르지 않을 경우 뜨는 경고글 -->
 					<span class="mail_input_box_warn" style="display: none;"></span>
+					<input type="hidden" name="email_check" value="emailUncheck">
 				</div>
 				<!-- 휴대전화 입력 -->
 				<div>
