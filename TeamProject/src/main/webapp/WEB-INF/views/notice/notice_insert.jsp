@@ -94,7 +94,7 @@
 					<input type="hidden" name="id" value="${member.id}">
 						<tr>
 							<th>제목</th>
-							<td><input name="subject"></td>
+							<td><input name="subject" style="border: 0;background-color: #e3f2fd; width: 75%; height: 100%;" placeholder="제목을 입력해주세요."></td>
 						</tr>
 						<tr>
 							<th>작성자</th>
@@ -103,12 +103,12 @@
 						<tr>
 							<th>내용</th>
 							<td colspan="3">
-								<pre><textarea name="content" rows="30" cols="140" style="resize:none;"></textarea></pre>
+								<pre><textarea name="content" rows="25" cols="136" style="resize:none; border: 0;background-color: #e3f2fd; padding: 10px;"></textarea></pre>
 							</td>
 						</tr>
 						<tr>
 							<th>파일 첨부</th>
-							<td><input type="file" name="photo" style="cursor:pointer"></td>
+							<td><input type="file" name="photo" style="cursor:pointer">※&nbsp;첨부파일은 <b>1</b>개만 등록 가능합니다.&nbsp;※</td>
 		 				</tr>
 						<tr>
 							<td colspan="4" align="right" id="menu">

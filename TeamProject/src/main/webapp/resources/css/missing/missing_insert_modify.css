@@ -35,3 +35,17 @@ td {
 	background-color: #bbdefb;
 	height: 30px;
 }
+
+#content {
+	overflow-y:auto;
+	min-height:100px;
+	max-height:400px; 
+	width:100%
+}
+textarea:focus {
+	outline: none;
+}
+
+input:focus {
+	outline: none;
+}

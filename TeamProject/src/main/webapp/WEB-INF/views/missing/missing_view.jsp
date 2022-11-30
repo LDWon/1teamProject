@@ -180,7 +180,7 @@
 					<br>
 					<div align="center" id="reply">
 						<pre><textarea name="content" rows="4" cols="100" style="resize:none;" placeholder="댓글을 입력하세요."></textarea></pre>
-						<input type="button" value="등록" onclick="reply(this.form);">
+						<input type="button" id="button_reply" value="댓글 등록" style="cursor:pointer;" onclick="reply(this.form);">
 			       	</div>
 				</form>
 			</div>

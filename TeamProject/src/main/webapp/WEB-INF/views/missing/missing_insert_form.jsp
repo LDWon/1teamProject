@@ -42,13 +42,13 @@
 					<table border="1" align="center">
 					<input type="hidden" name="id" value="${member.id}">
 						<tr>
-							<th>제목</th>
-							<td colspan="3"><input name="subject"></td>
+							<th id="subject_th">제목</th>
+							<td colspan="3"><input name="subject" style="border: 0;background-color: #e3f2fd; width: 75%; height: 100%;" placeholder="제목을 입력해주세요."></td>
 						</tr>
 						<tr>
 							<th>작성자</th>
 							<td>
-								<input name="name" value="${member.name}" readonly="readonly">
+								<input name="name" style="border: 0;background-color: #e3f2fd" value="${member.name}" readonly="readonly">
 							</td>
 							<th>지역</th>
 							<td align="center">
@@ -76,12 +76,14 @@
 						<tr>
 							<th>내용</th>
 							<td colspan="3">
-								<pre><textarea name="content" rows="30" cols="140" style="resize:none;">※실종자 등록 양식※&#10;&#10;상세지역: &#10;성별: &#10;이름: &#10;나이: &#10;키: &#10;몸무게: &#10;&#10;&#10;→이 부분은 지우고 자유롭게 적어주세요←&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;※첨부파일은 1개만 등록 가능합니다.※</textarea></pre>
+							<div id="content">
+								<pre><textarea name="content" rows="25" cols="136" style="resize:none; border: 0; background-color: #e3f2fd; padding: 10px;" >※실종자 등록 양식※&#10;&#10;●상세지역: &#10;●성별: &#10;●이름: &#10;●나이: &#10;●키: &#10;●몸무게: &#10;&#10;&#10;→이 부분은 지우고 자유롭게 적어주세요←</textarea></pre>
+							</div>
 							</td>
 						</tr>
 						<tr>
 							<th>파일 첨부</th>
-							<td colspan="3"><input type="file" name="photo" style="cursor:pointer"></td>
+							<td colspan="3"><input type="file" name="photo" style="cursor:pointer">※&nbsp;첨부파일은 <b>1</b>개만 등록 가능합니다.&nbsp;※</td>
 		 				</tr>
 						<tr>
 							<td colspan="4" align="right" id="menu">

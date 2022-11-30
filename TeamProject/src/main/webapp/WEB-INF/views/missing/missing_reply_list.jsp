@@ -35,8 +35,8 @@
 						</c:forEach>
 						<tr>
 							<td colspan="3" align="right" id="menu">
-								<input type="button" value="본문보기" onclick="location.href='missing_view.do?idx=${param.idx}&page=${param.page}'">
-								<input type="button" value="목록보기" onclick="location.href='missing_list.do?page=${param.page}'">
+								<input type="button" value="본문보기" style="cursor:pointer" onclick="location.href='missing_view.do?idx=${param.idx}&page=${param.page}'">
+								<input type="button" value="목록보기" style="cursor:pointer" onclick="location.href='missing_list.do?page=${param.page}'">
 							</td>
 						</tr>
 					</table>
