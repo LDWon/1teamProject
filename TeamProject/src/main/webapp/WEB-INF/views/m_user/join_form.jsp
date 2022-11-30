@@ -73,6 +73,7 @@
 			f.email.focus();
 		}
 
+		
 		//비밀번호 일치 확인
 		if (pwd != pwdChk) {
 			alert("비밀번호가 일치하지 않습니다.");
